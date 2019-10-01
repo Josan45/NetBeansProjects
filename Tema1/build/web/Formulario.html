@@ -14,12 +14,25 @@ and open the template in the editor.
         <h1 align="center">Primer formulario para trabajar con servlets</h1>
         <h2 align="center">Rellena los datos indicados y pulsa Enviar</h2>
         
-        <form method="post" action="/servlets-examples/ServletFormulario">
+        <form method="post" action="\Tema1\FormularioServlet">
             <table>
                 <tr>
                     <td>Introduce tu nombre completo:</td>
-                    <td><input type="text" name="nombre" size="25">
+                    <td><input type="text" name="nombre" size="25"></td>
                 </tr>
-            </table>
+                <tr>
+                    <td>Introduce el numero de telefono:</td>
+                    <td><input type="text" name="telefono" size="10" maxlength="9"></td>
+                </tr>
+                <tr>
+                    <td>Introduce tu ciudad de nacimiento:</td>
+                    <td><input type="text" name="lugar de nacimiento" size="20"></td>
+                </tr>
+            </table><br>
+            
+            <input type="submit" value="Enviar"><p>
+            <input type="reset" value="Borrar">
+        </form>
+        <a href="/Tema1/ServletEnlace">Pulsame</a>
     </body>
 </html>

@@ -8,6 +8,10 @@
         <servlet-name>FormularioServlet</servlet-name>
         <servlet-class>PrimerServlet.FormularioServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletEnlace</servlet-name>
+        <servlet-class>PrimerServlet.ServletEnlace</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PrimerServlet</servlet-name>
         <url-pattern>/PrimerServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>FormularioServlet</servlet-name>
         <url-pattern>/FormularioServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEnlace</servlet-name>
+        <url-pattern>/ServletEnlace</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
