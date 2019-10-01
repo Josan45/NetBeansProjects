@@ -23,11 +23,19 @@ public class Ejercicio3 extends HttpServlet {
         String ip=request.getRemoteAddr();
         String mime=request.getContentType();
         String cadena=request.getQueryString();
+        String rutaUriP=request.getRequestURI();
+        StringBuffer url=request.getRequestURL();
+        String rutaUriS=request.getServletPath();
+        String encabezado=request.getHeader(mime);
         
-        out.println(protocolo);
-        out.println(ip);
-        out.println(mime);
-        out.println(cadena);
+        out.println("<h1>"+protocolo+"</h1>");
+        out.println("<h1>"+ip+"</h1>");
+        out.println("<h1>"+mime+"</h1>");
+        out.println("<h1>"+cadena+"</h1>");
+        out.println("<h1>"+rutaUriP+"</h1>");
+        out.println("<h1>"+url+"</h1>");
+        out.println("<h1>"+rutaUriS+"</h1>");
+        out.println("<h1>"+encabezado+"</h1>");
     }
 
 }
