@@ -4,9 +4,17 @@
         <servlet-name>Tablas</servlet-name>
         <servlet-class>Tablas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Calculadora</servlet-name>
+        <servlet-class>Calculadora</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Tablas</servlet-name>
         <url-pattern>/Tablas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Calculadora</servlet-name>
+        <url-pattern>/Calculadora</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
