@@ -40,8 +40,8 @@ public class DatosEncuesta extends HttpServlet {
         }else{  
             out.println("<tr><td>Area de Texto:<b></td><td><i>"+texto+"</i></td></tr>");
         }
-        out.println("</table><p>");
-        out.println("<p>"+nom+" tus actividades de ocio son: ");
+        out.println("</table>");
+        out.println("<p>"+nom+" tus actividades de ocio son: </p>");
         
         if(sex.equals("Hombre")){
             out.print("<body class=hom>");
