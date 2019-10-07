@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Formulario Encuesta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            p{
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post" action="\EjercicioEncuesta\Controlador">
+            <h1 align="center">Encuesta Privada</h1>
+               
+            <h3>Rellena los datos indicados y pulsa Enviar</h3>
+            
+            <table>
+                <tr>
+                    <td>Introduce tu nombre:</td>
+                    <td><input type="text" name="nom"></td>
+                </tr>
+                <tr>
+                    <td>Introduce tu apellido:</td>
+                    <td><input type="text" name="apel"></td>
+                </tr>
+                <tr>
+                    <td>Teclea tu numero de telefono:</td>
+                    <td><input type="text" name="tel"></td>
+                </tr>
+                <tr>
+                    <td>Indica tu ciudad de nacimiento:</td>
+                    <td><input type="text" name="ciu"></td>
+                </tr>
+                </table>
+                    Sexo:
+                    <input type="radio" name="sex" value="Hombre">Hombre
+                    <input type="radio" name="sex" value="Mujer">Mujer<br>
+               
+                    Selecciona tu pais de origen:  <select name="pais">
+                        <option value="España">España</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Italia">Italia</option>
+                        <option value="Francia">Francia</option>
+                        <option value="Alemania">Alemania</option>
+                    </select>
+                    <br>
+                    <br>
+                    
+                    <p>Selecciona tus actividades de ocio favoritas:</p>
+                    <input type="checkbox" name="oc" value="para">Parapente<br>
+                    <input type="checkbox" name="oc" value="ala">Ala Delta<br>
+                    <input type="checkbox" name="oc" value="sub">Submarinismo<br>
+                    <input type="checkbox" name="oc" value="esq">Esqui<br>
+                    
+                    <p>Comentarios sobre la pagina:</p>
+                    <textarea name="texto" rows="6" cols="50"></textarea>
+                    
+                    <br>
+                    <br>
+            <input type="submit" value="Enviar Encuesta"><p>
+            <input type="reset" value="Borrar Datos">
+        </form>
+    </body>
+</html>
