@@ -75,7 +75,7 @@ public class DatosEncuesta extends HttpServlet {
             }else{  
                 out.println("<tr><td>Area de Texto:<b></td><td>"+texto+"</td></tr>");
             }
-            out.println("</table>");
+            out.println("</table><br>");
             out.println("<h4>"+nom+" tus actividades de ocio son: </h4>");
             String[] casilla=request.getParameterValues("oc");
             out.println("<table border=\"5\">");
