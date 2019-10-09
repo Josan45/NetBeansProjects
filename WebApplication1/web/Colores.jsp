@@ -9,16 +9,16 @@
             String color=request.getParameter("color");
             String nombre=request.getParameter("nombre");
             
-if(nombre==null){%>
-    <%@ include file="/FormuColores.jsp"%>
+    if(nombre==null){ %>
+    <%@ include file="/FormuColores.jsp" %>
     
-    <%}else if(color.length()==0 || nombre.length()==0){%>
-        <%@ include file="/FormuColoresConAviso.jsp"%>
-    <%}else{%>
-    <body bgcolor="<%=color%>">
-        <h2>Datos introducidpps</h2>
-        Nombre: <font color="red"><%=nombre%></font><p>
-        Color de fondo: <font color="blue"><%=color%></font>
+    <% }else if(color.length()==0 || nombre.length()==0){ %>
+        <%@ include file="/FormuColoresConAviso.jsp" %>
+    <% }else{ %>
+    <body bgcolor="<%= color %>">
+        <h2>Datos introducidos</h2>
+        Nombre: <font color="red"><%= nombre %></font><p>
+        Color de fondo: <font color="blue"><%= color %></font>
         <%}%>
     </body>
 </html>
