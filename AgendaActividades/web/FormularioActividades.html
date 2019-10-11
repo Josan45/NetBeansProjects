@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             #borde{
-                border-top: 70px solid #5DBCD2;
-                border-bottom: 70px solid #5DBCD2;
+                border-top: 70px solid green;
+                border-bottom: 70px solid green;
             }
             .boton{
                 margin-top:40px;
@@ -14,17 +14,18 @@
             }
             img{
                 height: 130px;
-                margin-left: 55%;
+                margin-left: 10%;
                 position: absolute;
-                margin-top: -9%;
+                margin-top: -25%;
             }
             .datos{
                 margin-top: 50px;
             }
+            
         </style>
     </head>
     <body>
-        <form method="post" action="\AgendaActividades\ControladorDatos">
+        <form method="post" action="AnadirActividad">
             <div id="borde">
             <div class="datos">
             <table>
@@ -55,7 +56,7 @@
                     <input type="checkbox" name="oc" value="cultural">Cultural<br>
                     <input type="checkbox" name="oc" value="convivencia">Convivencia<br>
                     <br>
-                    Curso destinado:  <select name="cursos">
+                    Curso destinado:  <select name="cursos"> 
                         <option value="informatica">Informatica</option>
                         <option value="cocina">Cocina</option>
                         <option value="enfermeria">Enfermeria</option>
@@ -73,6 +74,8 @@
             <input type="submit" value="Añadir Actividad">
             <input type="reset" value="Borrar Actividad">
             <input type="submit" value="Listado de actividades">
+            
+            <a><img src="logo.PNG">
             </div>
             </div>
         </form>
