@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Formulario Encuesta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #borde{
+                border-top: 70px solid #5DBCD2;
+                border-bottom: 70px solid #5DBCD2;
+            }
+            .boton{
+                margin-top:40px;
+                margin-left:45px; 
+            }
+            img{
+                height: 130px;
+                margin-left: 55%;
+                position: absolute;
+                margin-top: -9%;
+            }
+            .datos{
+                margin-top: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post" action="\AgendaActividades\ControladorDatos">
+            <div id="borde">
+            <div class="datos">
+            <table>
+                <tr>
+                    <td>Nombre de la actividad:</td>
+                    <td><input type="text" name="nom"></td>
+                </tr>
+                <tr>
+                    <td>Lugar de celebracion:</td>
+                    <td><input type="text" name="lug"></td>
+                </tr>
+                <tr>
+                    <td>Fecha:</td>
+                    <td><input type="text" name="fec"></td>
+                </tr>
+                <tr>
+                    <td>Hora:</td>
+                    <td><input type="text" name="hor"></td>
+                </tr>
+            </table><br>
+                    Destinado a:
+                    <input type="radio" name="dest" value="alumnos" checked>Alumnos
+                    <input type="radio" name="dest" value="profesorado">Profesorado<br>
+                    
+                    <p>Tipo de actividad:</p>
+                    <input type="checkbox" name="oc" value="academica">Academica<br>
+                    <input type="checkbox" name="oc" value="deportiva">Deportiva<br>
+                    <input type="checkbox" name="oc" value="cultural">Cultural<br>
+                    <input type="checkbox" name="oc" value="convivencia">Convivencia<br>
+                    <br>
+                    Curso destinado:  <select name="cursos">
+                        <option value="informatica">Informatica</option>
+                        <option value="cocina">Cocina</option>
+                        <option value="enfermeria">Enfermeria</option>
+                        <option value="todos">Todos</option>
+                    </select>
+                    <br><br>
+                    Profesor responsable:
+                    <input type="text" name="profe">
+                    
+                    <p>Observaciones:</p>
+                    <textarea name="texto" rows="6" cols="50"></textarea>
+                    
+                    <br>
+                    <br>
+            <input type="submit" value="Añadir Actividad">
+            <input type="reset" value="Borrar Actividad">
+            <input type="submit" value="Listado de actividades">
+            </div>
+            </div>
+        </form>
+    </body>
+</html>
