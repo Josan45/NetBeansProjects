@@ -5,20 +5,12 @@
         <servlet-class>Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AñadirActividad</servlet-name>
-        <servlet-class>AnadirActividad</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ValidarActividad</servlet-name>
         <servlet-class>ValidarActividad</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AñadirActividad</servlet-name>
-        <url-pattern>/A_adirActividad</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ValidarActividad</servlet-name>

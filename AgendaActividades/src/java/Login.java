@@ -16,18 +16,49 @@ public class Login extends HttpServlet {
         
             ServletContext contexto=getServletContext();
             RequestDispatcher rd;
-            
-            String usu=request.getParameter("usu");
-            String pass=request.getParameter("pass");
-            
-            
-                if((usu.equals("eso") && pass.equals("cdpjosecabreraeso")) || (usu.equals("sanidad") && pass.equals("cdpjosecabrerasanidad"))
-                    || (usu.equals("cocina") && pass.equals("cdpjosecabreracocina")) || (usu.equals("informatica") && pass.equals("cdpjosecabrerainformatica"))){
-                    rd=contexto.getRequestDispatcher("/FormularioActividades.html");
-                    rd.forward(request, response);
-                }else{
-                    rd=contexto.getRequestDispatcher("/DatosErroneos.html");
-                    rd.forward(request, response); 
-                }
-    }
+        
+            String usuario=request.getParameter("usuario");
+            //String usuario=(String)getServletContext().setAttribute("usuario");
+            String clave=request.getParameter("clave");
+
+            if(usuario.equals("eso") && clave.equals("cdpjosecabreraeso")){
+
+                contexto.setAttribute("usuario", usuario);
+                rd=contexto.getRequestDispatcher("/Formulario.html");
+
+                rd.forward(request, response);
+
+            }else if(usuario.equals("sanidad") && clave.equals("cdpjosecabrerasanidad")){
+
+                contexto.setAttribute("usuario", usuario);
+                rd=contexto.getRequestDispatcher("/Formulario.html");
+
+                rd.forward(request, response);
+
+            }else if(usuario.equals("cocina") && clave.equals("cdpjosecabreracocina")){
+
+                contexto.setAttribute("usuario", usuario);
+                rd=contexto.getRequestDispatcher("/Formulario.html");
+
+                rd.forward(request, response);
+
+            }else if(usuario.equals("informatica") && clave.equals("cdpjosecabrerainformatica")){
+
+                contexto.setAttribute("usuario", usuario);
+                rd=contexto.getRequestDispatcher("/Formulario.html");
+
+                rd.forward(request, response);
+
+            }else{
+
+                rd=contexto.getRequestDispatcher("/RespuestaError.html");
+                rd.forward(request, response);
+
+            }
+
+                contexto.setAttribute("usuario", usuario);
+                rd=contexto.getRequestDispatcher("ControladorActividad");
+                rd.forward(request, response);
+        
+        }
 }
