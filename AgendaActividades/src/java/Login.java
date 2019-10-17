@@ -21,44 +21,23 @@ public class Login extends HttpServlet {
             //String usuario=(String)getServletContext().setAttribute("usuario");
             String clave=request.getParameter("clave");
 
-            if(usuario.equals("eso") && clave.equals("cdpjosecabreraeso")){
+            if((usuario.equals("eso") && clave.equals("cdpjosecabreraeso")) || (usuario.equals("sanidad") && clave.equals("cdpjosecabrerasanidad"))
+                   || (usuario.equals("cocina") && clave.equals("cdpjosecabreracocina")) || (usuario.equals("informatica") && clave.equals("cdpjosecabrerainformatica"))){
 
                 contexto.setAttribute("usuario", usuario);
-                rd=contexto.getRequestDispatcher("/Formulario.html");
+                rd=contexto.getRequestDispatcher("/FormularioActividades.html");
 
                 rd.forward(request, response);
-
-            }else if(usuario.equals("sanidad") && clave.equals("cdpjosecabrerasanidad")){
-
-                contexto.setAttribute("usuario", usuario);
-                rd=contexto.getRequestDispatcher("/Formulario.html");
-
-                rd.forward(request, response);
-
-            }else if(usuario.equals("cocina") && clave.equals("cdpjosecabreracocina")){
-
-                contexto.setAttribute("usuario", usuario);
-                rd=contexto.getRequestDispatcher("/Formulario.html");
-
-                rd.forward(request, response);
-
-            }else if(usuario.equals("informatica") && clave.equals("cdpjosecabrerainformatica")){
-
-                contexto.setAttribute("usuario", usuario);
-                rd=contexto.getRequestDispatcher("/Formulario.html");
-
-                rd.forward(request, response);
-
+                
             }else{
 
-                rd=contexto.getRequestDispatcher("/RespuestaError.html");
+                rd=contexto.getRequestDispatcher("/DatosErroneos.html");
                 rd.forward(request, response);
 
             }
 
                 contexto.setAttribute("usuario", usuario);
-                rd=contexto.getRequestDispatcher("ControladorActividad");
-                rd.forward(request, response);
-        
+                rd=contexto.getRequestDispatcher("ValidarActividad");
+                rd.forward(request, response);   
         }
 }
