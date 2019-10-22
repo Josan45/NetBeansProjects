@@ -1,0 +1,67 @@
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="ControlarDatos" method="post">
+            <table>
+                <tr>
+                    <td>Nombre Actividad: </td>
+                    <td><input type="text" name="nombre"></td>
+                </tr>
+                <tr>
+                    <td>Lugar Celebracion: </td>
+                    <td><input type="text" name="lugar"></td>
+                </tr>
+                <tr>
+                    <td>Fecha: </td>
+                    <td><input type="text" name="fecha"></td>
+                </tr>
+                <tr>
+                    <td>Hora: </td>
+                    <td><input type="text" name="hora"></td>
+                </tr>
+            </table>
+            <br> Destino: 
+                    <input type="radio" name="destino" value="Alumno">Alumno
+                    <input type="radio" name="destino" value="Profesor">Profesor
+            
+            <br>
+            <br>
+            
+            Tipo de Actividad:<br>
+            <input type="checkbox" name="tipo" value="Academica">Academica<br>
+            <input type="checkbox" name="tipo" value="Deportiva">Deportiva<br>
+            <input type="checkbox" name="tipo" value="Cultural">Cultural<br>
+            
+            <br>
+            <br>
+            
+            Curso destinado:<select name="curso">
+                <option value="eso">ESO</option>
+                <option value="informatica">Informatica</option>
+                <option value="cocina">Cocina</option>
+                <option value="sanidad">Sanidad</option>
+            </select>
+            
+            <br>
+            <br>
+            
+            Profesor Responsable:<input type="text" name="profe">
+            
+            <br>
+            <br>
+            
+            Observaciones:<textarea name="texto" rows="5" cols="50"></textarea>
+            
+            <br>
+            <br>
+            
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Borrar Datos">
+        </form>
+    </body>
+</html>

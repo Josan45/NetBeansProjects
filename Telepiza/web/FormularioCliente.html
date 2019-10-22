@@ -1,0 +1,80 @@
+
+<html>
+    <head>
+        <title>Pedido</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: red;
+            }
+            table{
+                margin-left: 2%;
+                margin-top: 10%;
+            }
+            .boton{
+                margin-left: 2%;
+            }
+            img{
+                align-content: rigth;
+                position:relative;
+                float: right;
+                margin-top: 0%;
+                margin-right: 10%;
+        </style>
+    </head>
+    <body>
+         
+       <form method="post" action="DatosPedido">
+           <a href="index.html"><img src="tp.jpg"></a>
+           <table>
+               
+               <tr>
+                   <td>Nombre:</td>
+                   <td><input type="text" name="nombre"></td>
+               </tr>
+               <tr>
+                   <td>Apellidos:</td>
+                   <td><input type="text" name="apellidos"></td>
+               </tr>
+               
+               <tr>
+                   <td>Tipo de Masa:</td>
+                   <td>
+                       <select name="masa">
+               
+                        <option value="Normal">Normal</option>
+                        <option value="Gorda">Gorda</option>
+                        <option value="Fina">Fina</option>
+      
+                        </select></td>
+               </tr>
+               
+               <tr>
+                   <td>Ingredientes:</td>
+                   <td>
+                       <input type="checkbox" name="ing" value="Jamon">Jamon<br>
+                       <input type="checkbox" name="ing" value="Chorizo">Chorizo<br>  
+                       <input type="checkbox" name="ing" value="Atun">Atun<br> 
+                       <input type="checkbox" name="ing" value="Aceituna">Aceituna<br>
+                       <input type="checkbox" name="ing" value="Pollo">Pollo<br>
+                       <input type="checkbox" name="ing" value="Gamba">Gamba<br>
+                       <input type="checkbox" name="ing" value="Piña">Piña<br>
+                   </td>  
+               </tr>
+                   
+               <tr>
+                   <td>Observaciones:</td>
+                   <td><textarea name="texto" rows="7" cols="60"></textarea></td>
+               </tr>
+               
+               
+           </table>
+           
+           <br>
+           
+           <input class="boton" type="submit" value="Añadir Pedido">
+           <input class="boton" type="reset" value="Borrar Pedido">
+       </form>
+    </body>
+</html>

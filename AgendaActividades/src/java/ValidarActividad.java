@@ -1,6 +1,8 @@
 
 
-import static Lista.lista;
+import Modelo.Lista;
+import Modelo.ListaActividades;
+import static Modelo.Lista.lista;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
