@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Formulario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            h1{
+                text-align: center;
+            }       
+        </style>
+    </head>
+    <body>
+        <form action="ControlDatos" method="post">
+            <h1>DATOS DEL TRABAJADOR</h1>
+            <table>
+                <tr>
+                    <td class="marginD">Apellido 1</td>
+                    <td><input type="text" name="apellido1"></td>
+                    
+                    <td class="marginD">Apellido 2</td>
+                    <td><input type="text" name="apellido2"></td>
+                    
+                    <td class="marginD">Nombre</td>
+                    <td><input type="text" name="nombre"></td>
+                </tr>
+                <tr>
+                    <td>Nº SS</td>
+                    <td><input type="text" name="nss"></td>
+                    
+                    <td>Fecha ingreso en la empresa</td>
+                    <td><input type="text" name="fecIng"></td>
+                    
+                    <td>Fecha de nacimiento</td>
+                    <td><input type="text" name="fecNac"></td>
+                </tr>
+                <tr>
+                    <td><h2>DATOS DE LA EMPRESA</h2></td>
+                </tr>
+                <tr>
+                    <td>CIF</td>
+                    <td><input type="text" name="cif"></td>
+                </tr>
+                <tr>
+                    <td>Nombre o Razon Social</td>
+                    <td><input type="text" name="razsoc"></td>
+                </tr>
+                <tr>
+                    <td>CCC</td>
+                    <td><input type="text" name="ccc"></td>
+                </tr>
+                <tr>
+                    <td>Descripcion del accidente</td>
+                    <td><textarea name="texto" cols="50" rows="6"></textarea></td>
+                </tr>
+            </table>
+                    <input type="submit" value="Añadir Parte">
+                    <input type="reset" value="Borrar Parte">
+                <button>
+                    <a href="Resultado.jsp">Listado de partes</a>
+                </button>
+            
+        </form>
+    </body>
+</html>
