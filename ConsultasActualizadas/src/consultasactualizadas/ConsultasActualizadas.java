@@ -50,7 +50,6 @@ public class ConsultasActualizadas {
             for (int x = 1; x <= meta.getColumnCount(); x++) {
                 num = meta.getColumnName(x);
                 nomColum[x] = num;//Guardo cada nombre de columnas
-                System.out.println(nomColum[x]);
             }
 
             int cont = 0;
