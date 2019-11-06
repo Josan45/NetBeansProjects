@@ -30,25 +30,23 @@ public class CrearTablaConRegistro {
         Scanner dato = new Scanner(System.in);
 
         System.out.println("¿Que opción elijes? ¿A o B?");
-        String opcion = dato.nextLine();
-
-        String op = opcion.toLowerCase();
+        String opcion = dato.next();
 
         String[] sentencia = new String[2];
         String borrado="DROP TABLE mitabla";
         String[] opc = new String[2];
 
-        int opcion1 = 0;
+        int opcion1=0;
 
-        if (op.equals("A")) {
+        if (opcion.equals("A")) {
             opcion1 = 0;
         }
 
-        if (op.equals("B")) {
+        if (opcion.equals("B")) {
             opcion1 = 1;
         }
 
-        if (opcion1 == 0) {
+        
             sentencia[0] = "CREATE TABLE mitabla("
                     + "nombre VARCHAR(45) NOT NULL,"
                     + "apellidos VARCHAR(45) NOT NULL,"
@@ -62,7 +60,7 @@ public class CrearTablaConRegistro {
                     + "('Carlos','Ruiz Gil','26','941124541'"
                     + ");";
 
-        } else {
+        
             sentencia[1] = "CREATE TABLE mitabla("
                     + "nombre VARCHAR(45) NOT NULL,"
                     + "apellidos VARCHAR(45) NOT NULL,"
@@ -76,7 +74,7 @@ public class CrearTablaConRegistro {
                     + "('Pepe','Botella Ruiz','26','Madrid','1975-10-12'),"
                     + "('Carlos','Ruiz Gil','26','Barcelona','1976-11-25'"
                     + ");";
-        }
+        
 
         try {
             Class.forName(driver);

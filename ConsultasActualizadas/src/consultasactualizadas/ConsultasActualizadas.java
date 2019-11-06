@@ -27,10 +27,10 @@ public class ConsultasActualizadas {
         String url = "jdbc:mysql://localhost:3306/ordenadores";
         Connection con = null;
 
-        String borrado = "DELETE FROM ordenadores WHERE Unidades>60";
-        String mayor = "SELECT * FROM ordenadores";
-        String insertar = "UPDATE ordenadores SET Vendedores='yo'";
-        String cucu = "UPDATE ordenadores SET Vendedores='cucu' WHERE Unidades>55";
+        String borrado = "DELETE FROM ventasordenadores WHERE Unidades>60";
+        String mayor = "SELECT * FROM ventasordenadores";
+        String insertar = "UPDATE ventasordenadores SET Vendedores='yo'";
+        String cucu = "UPDATE ventasordenadores SET Vendedores='cucu' WHERE Unidades>55";
 
         try {
             Class.forName(driver);
@@ -55,7 +55,7 @@ public class ConsultasActualizadas {
 
             int cont = 0;
             int fila = 0;
-            System.out.println(columna);
+            System.out.println("Fila "+columna+" afectada");
 
             //System.out.println(tabla[3][2]);
             rs = st.executeQuery(mayor);
@@ -64,7 +64,7 @@ public class ConsultasActualizadas {
             while (rs.next()) {
                 fila++;
             }
-            System.out.println(fila);
+            System.out.println("Fila "+fila+" afectada");
 
             String tabla[][] = new String[fila][columna];
 
@@ -85,7 +85,7 @@ public class ConsultasActualizadas {
                 String unidades = tabla[x][1];
                 int uni = Integer.parseInt(unidades);
                 if (uni > 60) {
-                        String añadir = "INSERT INTO ordenadores VALUE ('" + tabla[x][0] + "','" + tabla[x][1] + "','" + tabla[x][2] + "');";
+                        String añadir = "INSERT INTO ventasordenadores VALUE ('" + tabla[x][0] + "','" + tabla[x][1] + "','" + tabla[x][2] + "');";
                         st.executeUpdate(añadir);
                         //System.out.println();
                 }
