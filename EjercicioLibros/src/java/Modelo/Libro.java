@@ -10,34 +10,7 @@ package Modelo;
  * @author José Antonio
  */
 public class Libro {
-    int codigo,paginas;
-    String titulo,autor,fecha;
-    double precio;
-
-    public Libro(int codigo, String titulo, String autor, String fecha, int paginas, double precio) {
-        this.setCodigo(codigo);
-        this.setTitulo(titulo);
-        this.setAutor(autor);
-        this.setFecha(fecha);
-        this.setPaginas(paginas);
-        this.setPrecio(precio);
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public int getPaginas() {
-        return paginas;
-    }
-
-    public void setPaginas(int paginas) {
-        this.paginas = paginas;
-    }
+    String titulo,isbn,autor,editorial,descripcion;
 
     public String getTitulo() {
         return titulo;
@@ -45,6 +18,14 @@ public class Libro {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getAutor() {
@@ -55,19 +36,27 @@ public class Libro {
         this.autor = autor;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getEditorial() {
+        return editorial;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
     }
 
-    public double getPrecio() {
-        return precio;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Libro(String titulo, String isbn, String autor, String editorial, String descripcion) {
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.autor = autor;
+        this.editorial = editorial;
+        this.descripcion = descripcion;
     }
 }

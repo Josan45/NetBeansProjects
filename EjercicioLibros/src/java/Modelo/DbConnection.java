@@ -4,18 +4,13 @@
  * and open the template in the editor.
  */
 package Modelo;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletContext;
-import Modelo.Libro;
+import java.util.*;
 
 /**
  *
@@ -27,7 +22,7 @@ public class DbConnection {
     public static String servidor="localhost:3306";
     public static String basedatos="books";    
 
-    public static Connection abrirConexion() throws SQLException {
+     public static Connection abrirConexion() throws SQLException {
         Connection con=null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -40,95 +35,29 @@ public class DbConnection {
         return con;
     }
 
-    public static ArrayList<Libro> consultaTitulos(){
-        ArrayList<Libro> lista=new ArrayList();
-        Libro ebook;
-        Connection con=null;
-            try {
-                con=abrirConexion();
-                String sql="SELECT * FROM libros;";
-
-                PreparedStatement pst=con.prepareStatement(sql);
-                ResultSet rs=pst.executeQuery();
-
-                while(rs.next()){
-                    ebook=new Libro(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDouble(6));
-                    lista.add(ebook);
-                }
-
-            } catch (SQLException ex) {
-                System.out.println("Error en la conexion");
+public static ArrayList<Libro> consultaTitulos(String dato){
+    ArrayList<Libro> lista=new ArrayList();
+    Libro ebook;
+    Connection con=null;
+        try {
+            con=abrirConexion();
+            String sql="SELECT titulos.Titulo,titulos.ISBN,autor.Nombre,editorial.NameEditorial,titulos.Descripcion FROM titulos,autor,editorial;";
+            
+            PreparedStatement smt=con.prepareStatement(sql);
+            smt.setString(1,"%"+dato+"%");
+            ResultSet rs=smt.executeQuery();
+            
+            while(rs.next()){
+                ebook=new Libro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+                lista.add(ebook);
             }
-
-        return lista;
+            
+        } catch (SQLException e) {
+            System.out.println("Controlador JDBC no encontrado"+e.toString());
+        }catch(Exception e){
+            System.out.println("Otra excepcion"+e.toString());
+        }
+    
+    return lista;
     }
-
-    public static ArrayList<Usuario> consultaUsuarios(String nombre, String pass){
-        ArrayList<Usuario> usu=new ArrayList();
-        Usuario usuari;
-        Connection con=null;
-            try {
-                con=abrirConexion();
-                String sql="SELECT * FROM usuarios WHERE nombre='"+nombre+"' AND clave='"+pass+"';";
-
-                PreparedStatement pst=con.prepareStatement(sql);
-                ResultSet rs=pst.executeQuery();
-
-                while(rs.next()){
-                    usuari=new Usuario(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
-                    usu.add(usuari);
-                }
-
-            } catch (SQLException ex) {
-                System.out.println("Error en la conexion");
-            }
-
-        return usu;
-    }
-
-    public static ArrayList<Libro> añadirLibros(int codigo, String titulo, String autor, String fecha, int pagina,double precio){
-        ArrayList<Libro> nuevo=new ArrayList();
-        ArrayList<Libro> existe=new ArrayList();
-        Libro exis;
-        Connection con=null;
-            try {
-                con=abrirConexion();
-
-                String buscar="SELECT * FROM libros WHERE titulo='"+titulo+"'";
-                String sql="INSERT INTO libros VALUES (?,?,?,?,?,?);";
-
-                PreparedStatement pst=null;
-
-                pst=con.prepareStatement(buscar);
-                ResultSet rs=pst.executeQuery();
-
-                while(rs.next()){
-                    exis=new Libro(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDouble(6));
-                    existe.add(exis);
-                }
-
-                if(existe.size()==1){
-                    nuevo=null;
-                }else{
-
-                pst=con.prepareStatement(sql);
-                //Cojo cada interrogacion y la cambio por cada variable
-                pst.setInt(1, codigo);
-                pst.setString(2, titulo);
-                pst.setString(3, autor);
-                pst.setString(4, fecha);
-                pst.setInt(5, pagina);
-                pst.setDouble(6, precio);
-
-                pst.executeUpdate();//Actualizo la base de datos añadiendole el libro
-
-                }
-
-            } catch (SQLException ex) {
-                System.out.println("Error en la conexion");
-            }
-
-        return nuevo;
-    }
-
 }
