@@ -109,4 +109,92 @@ public class DbConnection {
 
         return comercial;
     }
+     public static ArrayList<Usuario>consultaUsu(String nombre,String pass){
+        ArrayList<Usuario>Usu=new ArrayList<>();
+        Usuario usuario;
+        
+        Connection con=null;
+        
+        try {
+            con=CrearConexion();
+            
+            String sql="SELECT usuario,password FROM usuario WHERE usuario='"+nombre+"' AND password='"+pass+"'";
+            
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(sql);
+            
+            while(rs.next()){
+                String nom=rs.getString("usuario");
+                String pas=rs.getString("password");
+                
+                usuario=new Usuario(nom, pas);
+                Usu.add(usuario);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Usu;
+    }
+    
+    public static ArrayList<Producto>consultaProducto(){
+        
+        ArrayList<Producto>productos=new ArrayList();
+        Producto produc;
+        
+        Connection con=null;
+        
+        try {
+            con=CrearConexion();
+            
+            String sql="SELECT * FROM productos";
+            
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(sql);
+            
+            while(rs.next()){
+                String referencia=rs.getString("referencia");
+                String nombre=rs.getString("nombre");
+                String descripcion=rs.getString("descripcion");
+                double precio=rs.getDouble("precio");
+                int descuento=rs.getInt("descuento");
+                
+                produc=new Producto(referencia, nombre, descripcion, descuento, precio);
+                productos.add(produc);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return productos;
+    }
+    
+    public static boolean altaProductos(Altas alta){
+        boolean agregado=false;
+        
+        Connection con=null;
+        
+        try {
+            con=CrearConexion();
+            
+            String sql="INSERT INTO ventas VALUES(?,?,?,?)";
+            
+            PreparedStatement pst=con.prepareStatement(sql);
+                        
+            pst.setInt(1, alta.codigo);
+            pst.setString(2, alta.referencia);
+            pst.setInt(3, alta.cantidad);
+            pst.setString(4, alta.fecha);
+            
+            pst.executeUpdate();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return agregado=true;
+    }
 }

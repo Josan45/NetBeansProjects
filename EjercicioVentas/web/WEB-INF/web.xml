@@ -8,6 +8,10 @@
         <servlet-name>ventasListado</servlet-name>
         <servlet-class>Servlet.ventasListado</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>compruebaUsuario</servlet-name>
+        <servlet-class>Servlet.compruebaUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Consulta</servlet-name>
         <url-pattern>/Consulta</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ventasListado</servlet-name>
         <url-pattern>/ventasListado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaUsuario</servlet-name>
+        <url-pattern>/compruebaUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
