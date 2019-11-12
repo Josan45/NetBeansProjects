@@ -27,7 +27,7 @@ public class Consulta extends HttpServlet {
         int tamano=titulo_a_buscar.length();
         
         if(tamano<1){
-            request.getRequestDispatcher("/error1.html").forward(request, response);
+            request.getRequestDispatcher("/erro1.html").forward(request, response);
         }else{
             request.getRequestDispatcher("/Consulta.jsp").forward(request, response);
         }

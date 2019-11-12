@@ -4,6 +4,7 @@
     Author     : alumno_2DAW
 --%>
 
+<%@page import="Modelo.DbConnection"%>
 <%@page import="java.util.*"%>
 <%@page import="Modelo.Libro"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,7 +20,7 @@
     <body>
         <%
             String dato=request.getParameter("titulo");
-            ArrayList<Libro>lista=Modelo.DbConnection.consultaTitulos(dato);
+            ArrayList<Libro>lista=DbConnection.consultaTitulos(dato);
         %>
         <h1>Consulta de los titulos disponibles:</h1>
         <div align="center">
@@ -35,11 +36,11 @@
                
               for(int x=0; x<lista.size(); x++){ {%>
               
-              <td><%=lista.get(x).getTitulo()%></td>
-              <td><%=lista.get(x).getIsbn()%></td>
-              <td><%=lista.get(x).getAutor()%></td>
-              <td><%=lista.get(x).getEditorial()%></td>
-              <td><%=lista.get(x).getDescripcion()%></td>
+                <td><%=lista.get(x).getTitulo()%></td>
+                <td><%=lista.get(x).getIsbn()%></td>
+                <td><%=lista.get(x).getAutor()%></td>
+                <td><%=lista.get(x).getEditorial()%></td>
+                <td><%=lista.get(x).getDescripcion()%></td>
                  
                 <% } %>
             </tr>

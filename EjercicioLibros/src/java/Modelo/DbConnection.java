@@ -36,18 +36,26 @@ public class DbConnection {
     }
 
 public static ArrayList<Libro> consultaTitulos(String dato){
-    ArrayList<Libro> lista=new ArrayList();
+    ArrayList<Libro> lista=new ArrayList<Libro>();
     Libro ebook;
     Connection con=null;
         try {
             con=abrirConexion();
-            String sql="SELECT titulos.Titulo,titulos.ISBN,autor.Nombre,editorial.NameEditorial,titulos.Descripcion FROM titulos,autor,editorial;";
+            String sql="SELECT Titulo,ISBN, CONCAT(Nombre,\", \",Apellido) as Autor, NameEditorial as Editorial, "
+                        + "Descripcion FROM titulos,autor,editorial WHERE titulos.IDautor=autor.IDAutor AND "
+                        +"titulos.IDeditorial=editorial.IDEditorial AND Titulo LIKE '%"+dato+"%'";
             
             PreparedStatement smt=con.prepareStatement(sql);
             smt.setString(1,"%"+dato+"%");
             ResultSet rs=smt.executeQuery();
             
             while(rs.next()){
+                String titulo=rs.getString("titulo");
+                String isbn=rs.getString("isbn");
+                String autor=rs.getString("autor");
+                String editorial=rs.getString("editorial");
+                String descripcion=rs.getString("descripcion");
+                
                 ebook=new Libro(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
                 lista.add(ebook);
             }
