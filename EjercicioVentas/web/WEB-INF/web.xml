@@ -12,6 +12,14 @@
         <servlet-name>compruebaUsuario</servlet-name>
         <servlet-class>Servlet.compruebaUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>compruebaAltas</servlet-name>
+        <servlet-class>Servlet.compruebaAltas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaModificar</servlet-name>
+        <servlet-class>Servlet.compruebaModificar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Consulta</servlet-name>
         <url-pattern>/Consulta</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>compruebaUsuario</servlet-name>
         <url-pattern>/compruebaUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaAltas</servlet-name>
+        <url-pattern>/compruebaAltas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaModificar</servlet-name>
+        <url-pattern>/compruebaModificar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

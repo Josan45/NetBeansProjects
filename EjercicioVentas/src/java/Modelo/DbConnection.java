@@ -171,30 +171,28 @@ public class DbConnection {
         return productos;
     }
     
-    public static boolean altaProductos(Altas alta){
-        boolean agregado=false;
+
+    public static boolean altaProductos(String codigo, String referencia, int cant ,String fecha) {
+          boolean agregado=false;
         
         Connection con=null;
         
         try {
             con=CrearConexion();
             
-            String sql="INSERT INTO ventas VALUES(?,?,?,?)";
+            String sql="INSERT INTO `ventas` (`codComercial`,`refProducto`,`cantidad`,`fecha`) VALUES('"+codigo+"','"+referencia+"','"+cant+"','"+fecha+"');";
             
             PreparedStatement pst=con.prepareStatement(sql);
                         
-            pst.setInt(1, alta.codigo);
-            pst.setString(2, alta.referencia);
-            pst.setInt(3, alta.cantidad);
-            pst.setString(4, alta.fecha);
+            
             
             pst.executeUpdate();
-            
+            agregado=true;
             
         } catch (SQLException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return agregado=true;
+        return agregado;
     }
 }
