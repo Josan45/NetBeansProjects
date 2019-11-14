@@ -40,7 +40,6 @@ public class ventasListado extends HttpServlet {
             out.println("<title>Servlet ventasListado</title>"); 
             out.println("<meta charset=\"UTF-8\">\n" +
 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-"        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js\"></script>\n" +
 "        <style>\n" +
 "            body{\n" +
 "                background-color:#ccffcc;\n" +

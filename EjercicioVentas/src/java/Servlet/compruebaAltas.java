@@ -51,7 +51,7 @@ public class compruebaAltas extends HttpServlet {
         }else{
             int cant=Integer.parseInt(cantidad);
             
-            boolean agregar=DbConnection.altaProductos(codigo,referencia,cant,fecha);
+           /* boolean agregar=DbConnection.altaProductos(codigo,referencia,cant,fecha);
             
             if(agregar==true){
                 rd=contexto.getRequestDispatcher("/agregado.html");
@@ -60,7 +60,7 @@ public class compruebaAltas extends HttpServlet {
                 rd=contexto.getRequestDispatcher("/errorAlta.html");
                 rd.forward(request, response);
             }
-            
+            */
         }
     }
 

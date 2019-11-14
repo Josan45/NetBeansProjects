@@ -171,7 +171,7 @@ public class DbConnection {
         return productos;
     }
     
-
+/*
     public static boolean altaProductos(String codigo, String referencia, int cant ,String fecha) {
           boolean agregado=false;
         
@@ -194,5 +194,5 @@ public class DbConnection {
         }
         
         return agregado;
-    }
+    }*/
 }
