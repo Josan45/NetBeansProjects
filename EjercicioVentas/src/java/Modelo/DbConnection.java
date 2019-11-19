@@ -65,6 +65,7 @@ public class DbConnection {
             Statement st=cnn.createStatement();
             ResultSet rs=st.executeQuery(sql);
             
+            
             while(rs.next()){
                 String nombreComercial=rs.getString("NombreComercial");
                 String nombreProducto=rs.getString("NombreProducto");
