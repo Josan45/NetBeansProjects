@@ -143,7 +143,7 @@ public class DbConnection {
     
     public static ArrayList<Producto>consultaProducto(){
         
-        ArrayList<Producto>productos=new ArrayList();
+        ArrayList<Producto>producto=new ArrayList();
         Producto produc;
         
         Connection con=null;
@@ -164,14 +164,14 @@ public class DbConnection {
                 int descuento=rs.getInt("descuento");
                 
                 produc=new Producto(referencia, nombre, descripcion, descuento, precio);
-                productos.add(produc);
+                producto.add(produc);
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return productos;
+        return producto;
     }
     
     public static boolean altaProductos(Altas alta){
