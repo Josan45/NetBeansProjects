@@ -35,13 +35,14 @@ public class compruebaAltas extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ServletContext contexto=request.getServletContext();
+       ServletContext contexto=request.getServletContext();
         RequestDispatcher rd;
         
         Altas alta;
         
-        String codigo=request.getParameter("codigo");
-        String referencia=request.getParameter("referencia");
+        String codigo=request.getParameter("cod");
+        int codi=Integer.parseInt(codigo);
+        String producto=request.getParameter("pro");
         String cantidad=request.getParameter("cantidad");
         String fecha=request.getParameter("fecha");
         
@@ -51,7 +52,9 @@ public class compruebaAltas extends HttpServlet {
         }else{
             int cant=Integer.parseInt(cantidad);
             
-           /* boolean agregar=DbConnection.altaProductos(codigo,referencia,cant,fecha);
+            alta=new Altas(codi, producto, cant, fecha);
+            
+            boolean agregar=DbConnection.altaProductos(alta);
             
             if(agregar==true){
                 rd=contexto.getRequestDispatcher("/agregado.html");
@@ -60,7 +63,7 @@ public class compruebaAltas extends HttpServlet {
                 rd=contexto.getRequestDispatcher("/errorAlta.html");
                 rd.forward(request, response);
             }
-            */
+            
         }
     }
 

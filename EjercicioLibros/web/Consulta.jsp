@@ -32,6 +32,7 @@
                     <td>Editorial</td>
                     <td>Descripcion</td>
                 </tr>
+                <tr>
          <%
                
               for(int x=0; x<lista.size(); x++){ {%>

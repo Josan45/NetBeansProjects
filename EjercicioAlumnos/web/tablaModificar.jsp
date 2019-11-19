@@ -6,7 +6,7 @@
 
 
 <%@page import="Modelo.DbConnection"%>
-<%@page import="Modelo.Venta"%>
+<%@page import="Modelo.Alumnos"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -43,12 +43,6 @@
         <button><a href="alta.html">Alta Venta</a></button>
         <button><a href="modificar.jsp">Modificar Venta</a></button><br><br>
         
-        <% 
-            String codigo=request.getParameter("cod");
-            ArrayList<Venta>listado=new ArrayList();
-            listado=DbConnection.consultaVentas(codigo);
-        %>
-        
         <form method="POST" action="compruebaModificar">
             <table border="3px">
             <tr>
@@ -63,21 +57,20 @@
             </tr>
             
             <% 
+                ArrayList<Alumnos>listado=new ArrayList();
+                String alum=request.getParameter("alumno");
+                int alumno=Integer.parseInt(alum);
                 
-                for(int x=0;x<listado.size();x++){
                     out.println("<tr>");
-                    out.println("<td>"+listado.get(x).getNombreComercial()+"</td>");
-                    out.println("<td>"+listado.get(x).getNombreProducto()+"</td>");
-                    out.println("<td><input type='number' name='cantidad"+x+"' value='"+listado.get(x).getCantidad()+"'></td>");
-                    out.println("<td>"+listado.get(x).getPrecio()+"</td>");
-                    out.println("<td>"+listado.get(x).getTotal()+"</td>");
-                    out.println("<td>"+listado.get(x).getDescuento()+"</td>");
-                    out.println("<td>"+listado.get(x).getTotalDescuento()+"</td>");
-                    out.println("<td>"+listado.get(x).getFechaCompra()+"</td>");                  
+                    out.println("<td><input type='text' name='nombre"+alumno+"' value='"+listado.get(alumno).getNombre()+"'></td>");
+                    out.println("<td><input type='text' name='apellidos"+alumno+"' value='"+listado.get(alumno).getApellidos()+"'></td>");
+                    out.println("<td><input type='text' name='dawes"+alumno+"' value='"+listado.get(alumno).getDawes()+"'></td>");
+                    out.println("<td><input type='text' name='dawec"+alumno+"' value='"+listado.get(alumno).getDawec()+"'></td>");
+                    out.println("<td><input type='text' name='nombre"+alumno+"' value='"+listado.get(alumno).getDiw()+"'></td>");
+                    out.println("<td><input type='text' name='nombre"+alumno+"' value='"+listado.get(alumno).getDaw()+"'></td>");
+                    out.println("<td><input type='text' name='nombre"+alumno+"' value='"+listado.get(alumno).getFct()+"'></td>");
+                    out.println("<td><input type='text' name='nombre"+alumno+"' value='"+listado.get(alumno).getProyecto()+"'></td>");                  
                     out.println("</tr>");
-                    out.println("<input type='hidden' value='"+listado.size()+"' name='maximo'>");
-                    out.println("<input type='hidden' value='"+listado.get(x).getCantidad()+"' name='cant'>");
-                }
                 
             %>
             

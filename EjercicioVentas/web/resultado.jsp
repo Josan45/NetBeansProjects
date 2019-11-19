@@ -37,7 +37,7 @@
         <center>
         <div>
         <form method="POST" action="ventasListado">
-            <input type="submit" value="Ventas Listado">
+            <input type="submit" value="ventasListado">
             <button><a href="alta.html">Alta Venta</a></button>
             <button><a href="modificar.jsp">Modificar Venta</a></button>
         </form>

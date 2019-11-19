@@ -21,10 +21,11 @@ import java.util.logging.Logger;
  */
 public class DbConnection {
 
- public static String usuario="root";
+ 
+    public static String usuario="root";
     public static String pass="";
     public static String servidor="localhost:3306";
-    public static String baseDatos = "ventas-comerciales";
+    public static String baseDatos = "ventas_comerciales";
 
     public static Connection CrearConexion() throws SQLException {
         Connection con=null;
@@ -109,7 +110,8 @@ public class DbConnection {
 
         return comercial;
     }
-     public static ArrayList<Usuario>consultaUsu(String nombre,String pass){
+    
+    public static ArrayList<Usuario>consultaUsu(String nombre,String pass){
         ArrayList<Usuario>Usu=new ArrayList<>();
         Usuario usuario;
         
@@ -171,28 +173,46 @@ public class DbConnection {
         return productos;
     }
     
-/*
-    public static boolean altaProductos(String codigo, String referencia, int cant ,String fecha) {
-          boolean agregado=false;
+    public static boolean altaProductos(Altas alta){
+        boolean agregado=false;
         
         Connection con=null;
         
         try {
             con=CrearConexion();
             
-            String sql="INSERT INTO `ventas` (`codComercial`,`refProducto`,`cantidad`,`fecha`) VALUES('"+codigo+"','"+referencia+"','"+cant+"','"+fecha+"');";
+            String sql="INSERT INTO ventas VALUES(?,?,?,?)";
             
             PreparedStatement pst=con.prepareStatement(sql);
                         
-            
+            pst.setInt(1, alta.codigo);
+            pst.setString(2, alta.referencia);
+            pst.setInt(3, alta.cantidad);
+            pst.setString(4, alta.fecha);
             
             pst.executeUpdate();
-            agregado=true;
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return agregado;
-    }*/
+        return agregado=true;
+    }
+
+    public static boolean modificarVenta(String cantidad, String cantidadOriginal, String comercial, String fecha) {
+        boolean modificado=false;
+        Connection con=null;
+        
+        try{
+            con=CrearConexion();
+            Statement st=con.createStatement();
+            String sql="UPDATE ventas SET cantidad='"+cantidad+"' WHERE codComercial='"+comercial+"' AND fecha='"+fecha+"' AND cantidad='"+cantidadOriginal+"'";
+            st.executeUpdate(sql);
+            modificado=true;
+        }catch(Exception e){
+            
+        }
+        return modificado;
+    }
 }

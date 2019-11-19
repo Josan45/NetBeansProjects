@@ -13,11 +13,11 @@ public class Altas {
     int codigo,cantidad;
     String referencia,fecha;
 
-    public Altas(int codigo, int cantidad, String referencia, String fecha) {
-        this.setCodigo(codigo);
-        this.setCantidad(cantidad);
-        this.setReferencia(referencia);
-        this.setFecha(fecha);
+    public Altas(int codigo, String referencia, int cantidad, String fecha) {
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+        this.referencia = referencia;
+        this.fecha = fecha;
     }
 
     public int getCodigo() {
