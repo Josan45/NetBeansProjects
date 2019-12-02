@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>ServletSession</servlet-name>
-        <servlet-class>Controlador.ServletSession</servlet-class>
+        <servlet-name>ServletSesion</servlet-name>
+        <servlet-class>controlador.ServletSesion</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletCerrarSession</servlet-name>
-        <servlet-class>Controlador.ServletCerrarSession</servlet-class>
+        <servlet-name>cerrarSesion</servlet-name>
+        <servlet-class>controlador.cerrarSesion</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletSession</servlet-name>
-        <url-pattern>/ServletSession</url-pattern>
+        <servlet-name>ServletSesion</servlet-name>
+        <url-pattern>/sesion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletCerrarSession</servlet-name>
-        <url-pattern>/cerrarSession</url-pattern>
+        <servlet-name>cerrarSesion</servlet-name>
+        <url-pattern>/cerrarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -22,6 +22,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>ServletSession</welcome-file>
+        <welcome-file>sesion</welcome-file>
     </welcome-file-list>
 </web-app>

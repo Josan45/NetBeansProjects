@@ -3,30 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.*;
 import java.util.*;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 /**
  *
  * @author José Antonio
  */
-public class ServletSession extends HttpServlet {
+public class ServletSesion extends HttpServlet {
 
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out=response.getWriter();
         int visitas=1;
         long fecha;
-        HttpSession sesion=request.getSession();
+        HttpSession sesion = request.getSession();
         sesion.setMaxInactiveInterval(60);
         
         if(sesion.getAttribute("visitas")==null){
@@ -44,24 +43,24 @@ public class ServletSession extends HttpServlet {
         fecha=sesion.getLastAccessedTime();
         
         Date fechaA=new Date(fecha);
-        
         out.println("<html>");
-        out.println("<head><title>Ejemplo sencillo que emplea sesiones</title></head>");
+        out.println("<head><title>Sesiones</title></head>");
         out.println("<body>");
-        out.println("Id de sesion:"+sesion.getId());
-            if(sesion.isNew()){
-                out.println("La sesion es nueva");
-            }else{
-                out.println("La sesion no es nueva");
-            }
-        out.println("Hora creacion sesion:"+formatoFecha.format(fechaC));
-        out.println("Hora ultimo acceso:"+formatoFecha.format(fechaA));
-        out.println("Numero de accesos:"+visitas);
-        out.println("<form action='/Sesiones/cerrarSesion'>");
-        out.println("<input type='submit' value='Cerrar sesion'><p>");
+        out.println("ID: <b>"+sesion.getId()+"</b><br>");
+        if(sesion.isNew()){
+           out.println("La sesion es nueva <br>"); 
+        }else{
+            out.println("La sesion no es nueva <br>");
+        }
+        out.println("Visitas: "+visitas+"<br>");
+        out.println("Fecha Creacion: "+formatoFecha.format(fechaC)+"<br>");
+        out.println("Ultimo Acceso: "+formatoFecha.format(fechaA)+"<br>");
+        
+        out.println("<form method='post' action='cerrarSesion'>");
+        out.println("<input type='submit' value='Cerrar Sesion'>");
         out.println("</form>");
         out.println("</body>");
         out.println("</html>");
-
+        
     }
 }
