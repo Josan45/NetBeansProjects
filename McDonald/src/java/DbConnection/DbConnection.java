@@ -56,11 +56,12 @@ public class DbConnection {
             ResultSet rs=st.executeQuery(sql);
             while(rs.next()){
                 int id=rs.getInt("id");
-                int usuario=rs.getInt("usuario");
+                String usuario=rs.getString("usuario");
                 int pass=rs.getInt("pass");
                 String nombre=rs.getString("nombre");
+                int telefono=rs.getInt("telefono");
                 
-                usuari=new Usuario(id,usuario,pass,nombre);
+                usuari=new Usuario(id,usuario,pass,nombre,telefono);
                 
                 usu.add(usuari);
             }
@@ -199,5 +200,39 @@ public class DbConnection {
         }
         
         return bebi;
+    }
+    public static boolean consultaTel(String tel,String usu){
+        boolean si=false;
+        
+        ArrayList<Usuario>usuari=new ArrayList<Usuario>();
+        
+        Connection con=null;
+        
+        con=CrearConexion();
+        String sql="SELECT * FROM usuario WHERE usuario='"+usu+"' AND telefono='"+tel+"';";
+        Usuario usuarios;
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(sql);
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String usuario=rs.getString("usuario");
+                int pass=rs.getInt("pass");
+                String nombre=rs.getString("nombre");
+                int telefono=rs.getInt("telefono");
+                
+                usuarios=new Usuario(id,nombre,pass,usuario, telefono);
+                
+                usuari.add(usuarios);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(usuari.size()==1){
+            si=true;
+        }
+        
+        return si;
     }
 }

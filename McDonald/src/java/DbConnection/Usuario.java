@@ -11,14 +11,15 @@ package DbConnection;
  */
 public class Usuario {
     
-    String nombre;
-    int id,usuario,pass;
+    String usuario,nombre;
+    int id,pass,telefono;
 
-    public Usuario(int id, int usuario, int pass,String nombre) {
+    public Usuario(int id, String usuario, int pass,String nombre,int telefono) {
         this.nombre = nombre;
         this.id = id;
         this.usuario = usuario;
         this.pass = pass;
+        this.telefono=telefono;
     }
 
     public String getNombre() {
@@ -37,11 +38,11 @@ public class Usuario {
         this.id = id;
     }
 
-    public int getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(int usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
@@ -51,5 +52,13 @@ public class Usuario {
 
     public void setPass(int pass) {
         this.pass = pass;
-    }  
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
 }

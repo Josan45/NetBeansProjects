@@ -8,6 +8,14 @@
         <servlet-name>cerrarSesion</servlet-name>
         <servlet-class>Controlador.cerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>compruebaPedido</servlet-name>
+        <servlet-class>Controlador.compruebaPedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaTelefono</servlet-name>
+        <servlet-class>Controlador.compruebaTelefono</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>compruebaUsu</servlet-name>
         <url-pattern>/compruebaUsu</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>cerrarSesion</servlet-name>
         <url-pattern>/cerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaPedido</servlet-name>
+        <url-pattern>/compruebaPedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaTelefono</servlet-name>
+        <url-pattern>/compruebaTelefono</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

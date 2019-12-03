@@ -51,7 +51,7 @@ public class compruebaUsu extends HttpServlet {
         lista=DbConnection.consultaUsu(usuario, clave);
         
         if(lista.isEmpty()){
-            rd=contexto.getRequestDispatcher("/errorUsu.html");
+            rd=contexto.getRequestDispatcher("/errorUsuario.html");
             rd.forward(request, response);
         }else{
             sesion.setAttribute("usuario", usuario);

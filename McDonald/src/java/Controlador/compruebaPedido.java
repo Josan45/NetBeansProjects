@@ -13,13 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author José Antonio
  */
-public class cerrarSesion extends HttpServlet {
+public class compruebaPedido extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +32,32 @@ public class cerrarSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession sesion=request.getSession();
-        
-        sesion.invalidate();
-        
+         
         ServletContext contexto=request.getServletContext();
         RequestDispatcher rd;
         
-        rd=contexto.getRequestDispatcher("/cerrarSesion.html");
-        rd.forward(request, response);
+        PrintWriter out=response.getWriter();
+        
+        String menu=request.getParameter("menu");
+        String sandwis=request.getParameter("sandwis");
+        String complementos=request.getParameter("complementos");
+        String ensalada=request.getParameter("ensalada");
+        String bebida=request.getParameter("bebida");
+        
+        contexto.setAttribute("menu", menu);
+        contexto.setAttribute("sandwis", sandwis);
+        contexto.setAttribute("complementos", complementos);
+        contexto.setAttribute("ensalada", ensalada);
+        contexto.setAttribute("bebida", bebida);
+        
+        if(menu.equals("-----") && sandwis.equals("-----") && complementos.equals("-----") && ensalada.equals("-----") && bebida.equals("-----")){
+            rd=contexto.getRequestDispatcher("/errorPedido.html");
+            rd.forward(request, response);
+        }else{
+            rd=contexto.getRequestDispatcher("/pedirTelefono.jsp");
+            rd.forward(request, response);
         }
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
