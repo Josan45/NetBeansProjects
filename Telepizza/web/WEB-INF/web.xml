@@ -8,6 +8,14 @@
         <servlet-name>compruebaOfertas</servlet-name>
         <servlet-class>Controller.compruebaOfertas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>compruebaMenu</servlet-name>
+        <servlet-class>Controller.compruebaMenu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaPizza</servlet-name>
+        <servlet-class>Controller.compruebaPizza</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>compruebaLogin</servlet-name>
         <url-pattern>/compruebaLogin</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>compruebaOfertas</servlet-name>
         <url-pattern>/compruebaOfertas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaMenu</servlet-name>
+        <url-pattern>/compruebaMenu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaPizza</servlet-name>
+        <url-pattern>/compruebaPizza</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -116,4 +116,69 @@ public class DbConnection {
         
         return lista;
     }
+    
+    public static ArrayList<menus> consultaMenus(){
+        
+        ArrayList<menus>lista=new ArrayList();
+        
+        Connection con=null;
+        
+        String url="SELECT * FROM menus;";
+        
+        con=CrearConexion();
+        
+        menus men;
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String descripcion=rs.getString("descripcion");
+                
+                men=new menus(id, descripcion);
+                
+                lista.add(men);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
+    
+    public static ArrayList<pizzas> consultaPizzas(){
+        
+        ArrayList<pizzas>lista=new ArrayList();
+        
+        Connection con=null;
+        
+        String url="SELECT * FROM pizzas;";
+        
+        con=CrearConexion();
+        
+        pizzas piz;
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String nompizzas=rs.getString("nompizzas");
+                int idpizza=rs.getInt("idpizza");
+                
+                piz=new pizzas(id, nompizzas,idpizza);
+                
+                lista.add(piz);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
 }
