@@ -16,6 +16,34 @@
         <servlet-name>compruebaPizza</servlet-name>
         <servlet-class>Controller.compruebaPizza</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>compruebaEntrante</servlet-name>
+        <servlet-class>Controller.compruebaEntrante</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaHamburguesa</servlet-name>
+        <servlet-class>Controller.compruebaHamburguesa</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaPasta</servlet-name>
+        <servlet-class>Controller.compruebaPasta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaEnsalada</servlet-name>
+        <servlet-class>Controller.compruebaEnsalada</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaBebida</servlet-name>
+        <servlet-class>Controller.compruebaBebida</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaPostre</servlet-name>
+        <servlet-class>Controller.compruebaPostre</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaPedidos</servlet-name>
+        <servlet-class>Controller.compruebaPedidos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>compruebaLogin</servlet-name>
         <url-pattern>/compruebaLogin</url-pattern>
@@ -31,6 +59,34 @@
     <servlet-mapping>
         <servlet-name>compruebaPizza</servlet-name>
         <url-pattern>/compruebaPizza</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaEntrante</servlet-name>
+        <url-pattern>/compruebaEntrante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaHamburguesa</servlet-name>
+        <url-pattern>/compruebaHamburguesa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaPasta</servlet-name>
+        <url-pattern>/compruebaPasta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaEnsalada</servlet-name>
+        <url-pattern>/compruebaEnsalada</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaBebida</servlet-name>
+        <url-pattern>/compruebaBebida</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaPostre</servlet-name>
+        <url-pattern>/compruebaPostre</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaPedidos</servlet-name>
+        <url-pattern>/compruebaPedidos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

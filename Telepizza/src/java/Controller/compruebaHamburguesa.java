@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author José Antonio
  */
-public class compruebaPizza extends HttpServlet {
+public class compruebaHamburguesa extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,17 +41,18 @@ public class compruebaPizza extends HttpServlet {
         
         PrintWriter out=response.getWriter();
         
-        String pizza=request.getParameter("pizza");
+        String hamburguesa=request.getParameter("hamburguesa");
         String cantidad=request.getParameter("cantidad");
         int cant=Integer.parseInt(cantidad);
         
         //out.print("Oferta: "+oferta+" y cantidad: "+cantidad);
         
-        sesion.setAttribute("pizza", pizza);
-        sesion.setAttribute("cantidadPizza", cant);
+        sesion.setAttribute("hamburguesa", hamburguesa);
+        sesion.setAttribute("cantidadHamburguesa", cant);
         
-        rd=contexto.getRequestDispatcher("/entrantes.jsp");
+        rd=contexto.getRequestDispatcher("/pasta.jsp");
         rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

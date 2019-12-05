@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author José Antonio
  */
-public class compruebaPizza extends HttpServlet {
+public class compruebaEntrante extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +33,6 @@ public class compruebaPizza extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         ServletContext contexto=request.getServletContext();
         RequestDispatcher rd;
         
@@ -41,16 +40,16 @@ public class compruebaPizza extends HttpServlet {
         
         PrintWriter out=response.getWriter();
         
-        String pizza=request.getParameter("pizza");
+        String entrante=request.getParameter("entrante");
         String cantidad=request.getParameter("cantidad");
         int cant=Integer.parseInt(cantidad);
         
         //out.print("Oferta: "+oferta+" y cantidad: "+cantidad);
         
-        sesion.setAttribute("pizza", pizza);
-        sesion.setAttribute("cantidadPizza", cant);
+        sesion.setAttribute("entrante", entrante);
+        sesion.setAttribute("cantidadEntrante", cant);
         
-        rd=contexto.getRequestDispatcher("/entrantes.jsp");
+        rd=contexto.getRequestDispatcher("/hamburguesa.jsp");
         rd.forward(request, response);
     }
 

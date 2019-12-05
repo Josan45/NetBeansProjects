@@ -181,4 +181,197 @@ public class DbConnection {
         
         return lista;
     }
+     public static ArrayList<entrante> consultaEntrantes(){
+        
+        ArrayList<entrante>lista=new ArrayList();
+        
+        Connection con=null;
+        
+        String url="SELECT * FROM entrante;";
+        
+        con=CrearConexion();
+        
+        entrante ent;
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String tipo=rs.getString("tipo");
+                String descripcion=rs.getString("descripcion");
+                
+                ent=new entrante(id, tipo, descripcion);
+                
+                lista.add(ent);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
+     
+     public static ArrayList<hamburguesa> consultaHamburguesa(){
+        
+        ArrayList<hamburguesa>lista=new ArrayList();
+        
+        Connection con=null;
+        
+        String url="SELECT * FROM hambueguesa;";
+        
+        con=CrearConexion();
+        
+        hamburguesa ham;
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String nomHamburguesa=rs.getString("nomhambueguesa");
+                
+                ham=new hamburguesa(id, nomHamburguesa);
+                
+                lista.add(ham);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
+    
+    public static ArrayList<pasta> consultaPasta(){
+        
+        ArrayList<pasta>lista=new ArrayList();
+        
+        Connection con=null;
+        
+        String url="SELECT * FROM pasta;";
+        
+        con=CrearConexion();
+        
+        pasta past;
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String descripcion=rs.getString("Descripcion");
+                
+                past=new pasta(id, descripcion);
+                
+                lista.add(past);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
+    
+    public static ArrayList<ensaladas> consultaEnsalada(){
+        
+        ArrayList<ensaladas>lista=new ArrayList();
+        
+        Connection con=null;
+        
+        String url="SELECT * FROM ensaladas;";
+        
+        con=CrearConexion();
+        
+        ensaladas ens;
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String descripcion=rs.getString("nomensaladas");
+                
+                ens=new ensaladas(id, descripcion);
+                
+                lista.add(ens);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
+    
+    public static ArrayList<bebidas> consultaBebidas(){
+        
+        ArrayList<bebidas>lista=new ArrayList();
+        
+        Connection con=null;
+        
+        String url="SELECT * FROM bebidas;";
+        
+        con=CrearConexion();
+        
+        bebidas beb;
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String descripcion=rs.getString("nombebidas");
+                
+                beb=new bebidas(id, descripcion);
+                
+                lista.add(beb);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
+    
+    public static ArrayList<postre> consultaPostre(){
+        
+        ArrayList<postre>lista=new ArrayList();
+        
+        Connection con=null;
+        
+        String url="SELECT * FROM postre;";
+        
+        con=CrearConexion();
+        
+        postre pos;
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String descripcion=rs.getString("nompostre");
+                
+                pos=new postre(id, descripcion);
+                
+                lista.add(pos);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+    }
+    
 }
