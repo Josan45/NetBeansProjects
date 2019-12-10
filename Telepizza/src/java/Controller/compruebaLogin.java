@@ -45,6 +45,8 @@ public class compruebaLogin extends HttpServlet {
         String usu=request.getParameter("txtUsuario");
         String contra=request.getParameter("txtClave");
         
+        String nombre=DbConnection.Login(usu,contra);
+        
         ArrayList<Usuario>lista=new ArrayList();
         
         lista=DbConnection.consultaUsu(usu, contra);

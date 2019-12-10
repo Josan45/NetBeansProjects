@@ -373,5 +373,29 @@ public class DbConnection {
         
         return lista;
     }
+
+    public static String Login(String usu, String contra) {
+        String nombre=null;
+        Connection con=null;
+        
+        String url="SELECT Nombre FROM usuarios WHERE User_name='"+usu+"' AND User_password='"+contra+"';";
+        
+        con=CrearConexion();
+        
+        try {
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery(url);
+            
+            while(rs.next()){
+                nombre=rs.getString("Nombre");
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return nombre;
+    }
     
 }

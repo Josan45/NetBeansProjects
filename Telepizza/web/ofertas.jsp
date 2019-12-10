@@ -18,6 +18,7 @@
 
     String usuario = (String) sesion.getAttribute("usuario");
     String contra = (String) sesion.getAttribute("contra");
+    String nombre=(String) request.getAttribute("nombre");
 
     try {
 
@@ -44,7 +45,6 @@
 
             Date fechaInicio = new Date(hora);
             Date horaInicio = new Date(hora);
-            String nombre=(String) request.getSession().getAttribute("nombre");
 
             SimpleDateFormat formatoHora = new SimpleDateFormat("kk:mm:ss");
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
