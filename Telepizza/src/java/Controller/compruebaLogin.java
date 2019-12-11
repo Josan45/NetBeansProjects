@@ -36,6 +36,7 @@ public class compruebaLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         
         PrintWriter out=response.getWriter();
         
@@ -45,7 +46,7 @@ public class compruebaLogin extends HttpServlet {
         String usu=request.getParameter("txtUsuario");
         String contra=request.getParameter("txtClave");
         
-        String nombre=DbConnection.Login(usu,contra);
+        DbConnection.Login(usu,contra);
         
         ArrayList<Usuario>lista=new ArrayList();
         

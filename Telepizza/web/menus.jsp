@@ -19,6 +19,11 @@
     String usuario = (String) sesion.getAttribute("usuario");
     String contra = (String) sesion.getAttribute("contra");
 
+    if(usuario==null){
+         rd = contexto.getRequestDispatcher("/index.html");
+         rd.forward(request, response);     
+    }
+    
     try {
 
 
@@ -58,13 +63,13 @@
             <table width="100%" border="0">
                 <tr bordercolor="#FF0000" bgcolor="#FF0000">
                     <td width="4%" bgcolor="#FFFFFF">&nbsp;</td>
-                    <td colspan="3" class="inicio"><a href="ofertas.jsp">Inicio </a></td>
+                    <td colspan="3" class="inicio"></td>
                     <td width="7%" bgcolor="#FFFFFF">&nbsp;</td>
                 </tr>
                 <tr bordercolor="#FF0000" bgcolor="#FF0000">
                     <td width="4%" bgcolor="#FFFFFF">&nbsp;</td>
                     <td colspan="3"><img src="images/images_2016/logo_telepizza.gif"  /><br />
-                        <a href="ofertas.jsp"><img src="images/images_2016/ofertas.gif" width="73" height="31" longdesc="http://ofertas.jsp" /></a><a href="menus.jsp"><img src="images/images_2016/menus.gif" width="66" height="31" longdesc="http://ASD" /></a><a href="pizzas.jsp"><img src="images/images_2016/pizzas.gif" width="66" height="31" longdesc="http://SDFG" /></a><a href="entrantes.jsp"><img src="images/images_2016/entrantes.gif" width="85" height="31" longdesc="http://DFGSD" /></a><a href="hamburguesa.jsp"><img src="images/images_2016/hamburguesa.gif" width="123" height="31" longdesc="http://DFGDF" /></a><a href="pasta.jsp"><img src="images/images_2016/pasta.gif" width="58" height="31" longdesc="http://DFGH" /></a><a href="ensalada.jsp"><img src="images/images_2016/ensaladas.gif" width="94" height="31" longdesc="http://DFGH" /></a><a href="bebidas.jsp"><img src="images/images_2016/bebidas.gif" width="76" height="31" longdesc="http://SFGHDF" /></a><a href="postres.jsp"><img src="images/images_2016/postres.gif" width="70" height="31" alt="" longdesc="http://SDF" /></a></td>
+                        <a href="ofertas.jsp"><img src="images/images_2016/ofertas.gif" width="73" height="31" longdesc="http://ofertas.jsp" /></a><a href="menus.jsp"><img src="images/images_2016/menus.gif" width="66" height="31" longdesc="http://ASD" /></a><a href="pizzas.jsp"><img src="images/images_2016/pizzas.gif" width="66" height="31" longdesc="http://SDFG" /></a><a href="entrantes.jsp"><img src="images/images_2016/entrantes.gif" width="85" height="31" longdesc="http://DFGSD" /></a><a href="hamburguesa.jsp"><img src="images/images_2016/hamburguesa.gif" width="123" height="31" longdesc="http://DFGDF" /></a><a href="pasta.jsp"><img src="images/images_2016/pasta.gif" width="58" height="31" longdesc="http://DFGH" /></a><a href="ensalada.jsp"><img src="images/images_2016/ensaladas.gif" width="94" height="31" longdesc="http://DFGH" /></a><a href="bebidas.jsp"><img src="images/images_2016/bebidas.gif" width="76" height="31" longdesc="http://SFGHDF" /></a><a href="postre.jsp"><img src="images/images_2016/postres.gif" width="70" height="31" alt="" longdesc="http://SDF" /></a></td>
                     <td width="7%" bgcolor="#FFFFFF">&nbsp;</td>
                 </tr>
                 <tr bordercolor="#FF0000" bgcolor="#FF0000">

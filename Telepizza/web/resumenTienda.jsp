@@ -41,7 +41,8 @@
 
     <body>
 
-        <%            long hora = sesion.getLastAccessedTime();
+        <%           
+            long hora = sesion.getLastAccessedTime();
 
             Date fechaFinal = new Date(hora);
             Date horaFinal = new Date(hora);
@@ -49,41 +50,45 @@
             SimpleDateFormat formatoHora = new SimpleDateFormat("kk:mm:ss");
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
 
-            String menu = (String) sesion.getAttribute("menu");
-            int cantidadMenu = (int) sesion.getAttribute("cantidadMenu");
+            String oferta=(String) sesion.getAttribute("oferta");
+            int cantidadOferta=(int)sesion.getAttribute("cantidadOferta");
 
-            String pizza = (String) sesion.getAttribute("pizza");
-            int cantidadPizza = (int) sesion.getAttribute("cantidadPizza");
-
-            String entrante = (String) sesion.getAttribute("entrante");
-            int cantidadEntrante = (int) sesion.getAttribute("cantidadEntrante");
-
-            String hamburguesa = (String) sesion.getAttribute("hamburguesa");
-            int cantidadHamburguesa = (int) sesion.getAttribute("cantidadHamburguesa");
-
-            String ensalada = (String) sesion.getAttribute("ensalada");
-            int cantidadEnsalada = (int) sesion.getAttribute("cantidadEnsalada");
-
-            String bebida = (String) sesion.getAttribute("bebidas");
-            int cantidadBebida = (int) sesion.getAttribute("cantidadBebidas");
-
-            String postre = (String) sesion.getAttribute("postre");
-            int cantidadPostre = (int) sesion.getAttribute("cantidadPostre");
-
-
+            String menu=(String) sesion.getAttribute("menu");
+            int cantidadMenu=(int)sesion.getAttribute("cantidadMenu");
+            
+            String pizza=(String) sesion.getAttribute("pizza");
+            int cantidadPizza=(int)sesion.getAttribute("cantidadPizza");
+            
+            String entrante=(String) sesion.getAttribute("entrante");
+            int cantidadEntrante=(int)sesion.getAttribute("cantidadEntrante");
+            
+            String hamburguesa=(String) sesion.getAttribute("hamburguesa");
+            int cantidadHamburguesa=(int)sesion.getAttribute("cantidadHamburguesa");
+            
+            String pasta=(String) sesion.getAttribute("pasta");
+            int cantidadPasta=(int)sesion.getAttribute("cantidadPasta");
+            
+            String ensalada=(String) sesion.getAttribute("ensalada");
+            int cantidadEnsalada=(int)sesion.getAttribute("cantidadEnsalada");
+            
+            String bebida=(String) sesion.getAttribute("bebidas");
+            int cantidadBebida=(int)sesion.getAttribute("cantidadBebidas");
+            
+            String postre=(String) sesion.getAttribute("postre");
+            int cantidadPostre=(int)sesion.getAttribute("cantidadPostre");
         %>
 
         <form action="compruebaPedidos" method="POST">
             <table width="100%" border="0">
                 <tr bordercolor="#FF0000" bgcolor="#FF0000">
                     <td width="4%" bgcolor="#FFFFFF">&nbsp;</td>
-                    <td colspan="3" class="inicio"><a href="ofertas.jsp">Inicio </a></td>
+                    <td colspan="3" class="inicio"><a href="index.html">Salir </a></td>
                     <td width="7%" bgcolor="#FFFFFF">&nbsp;</td>
                 </tr>
                 <tr bordercolor="#FF0000" bgcolor="#FF0000">
                     <td width="4%" bgcolor="#FFFFFF">&nbsp;</td>
                     <td colspan="3"><img src="images/images_2016/logo_telepizza.gif"  /><br />
-                        <a href="ofertas.jsp"><img src="images/images_2016/ofertas.gif" width="73" height="31" longdesc="http://ofertas.jsp" /></a><a href="menus.jsp"><img src="images/images_2016/menus.gif" width="66" height="31" longdesc="http://ASD" /></a><a href="pizzas.jsp"><img src="images/images_2016/pizzas.gif" width="66" height="31" longdesc="http://SDFG" /></a><a href="entrantes.jsp"><img src="images/images_2016/entrantes.gif" width="85" height="31" longdesc="http://DFGSD" /></a><a href="hamburguesa.jsp"><img src="images/images_2016/hamburguesa.gif" width="123" height="31" longdesc="http://DFGDF" /></a><a href="pasta.jsp"><img src="images/images_2016/pasta.gif" width="58" height="31" longdesc="http://DFGH" /></a><a href="ensalada.jsp"><img src="images/images_2016/ensaladas.gif" width="94" height="31" longdesc="http://DFGH" /></a><a href="bebidas.jsp"><img src="images/images_2016/bebidas.gif" width="76" height="31" longdesc="http://SFGHDF" /></a><a href="postres.jsp"><img src="images/images_2016/postres.gif" width="70" height="31" alt="" longdesc="http://SDF" /></a></td>
+                        <a href="ofertas.jsp"><img src="images/images_2016/ofertas.gif" width="73" height="31" longdesc="http://ofertas.jsp" /></a><a href="menus.jsp"><img src="images/images_2016/menus.gif" width="66" height="31" longdesc="http://ASD" /></a><a href="pizzas.jsp"><img src="images/images_2016/pizzas.gif" width="66" height="31" longdesc="http://SDFG" /></a><a href="entrantes.jsp"><img src="images/images_2016/entrantes.gif" width="85" height="31" longdesc="http://DFGSD" /></a><a href="hamburguesa.jsp"><img src="images/images_2016/hamburguesa.gif" width="123" height="31" longdesc="http://DFGDF" /></a><a href="pasta.jsp"><img src="images/images_2016/pasta.gif" width="58" height="31" longdesc="http://DFGH" /></a><a href="ensalada.jsp"><img src="images/images_2016/ensaladas.gif" width="94" height="31" longdesc="http://DFGH" /></a><a href="bebidas.jsp"><img src="images/images_2016/bebidas.gif" width="76" height="31" longdesc="http://SFGHDF" /></a><a href="postre.jsp"><img src="images/images_2016/postres.gif" width="70" height="31" alt="" longdesc="http://SDF" /></a></td>
                     <td width="7%" bgcolor="#FFFFFF">&nbsp;</td>
                 </tr>
                 <tr bordercolor="#FF0000" bgcolor="#FF0000">
@@ -101,13 +106,61 @@
                 <tr style="">
                     <td></td>
                     <td>
-                        MENÚ <li><%=cantidadMenu%> <%=menu%></li><br>
-                        PIZZA <li><%=cantidadPizza%> <%=pizza%></li><br>
-                        ENTRANTE <li><%=cantidadEntrante%> <%=entrante%></li><br>
-                        HAMBURGUESA <li><%=cantidadHamburguesa%> <%=hamburguesa%></li><br>
-                        ENSALADA <li><%=cantidadEnsalada%> <%=ensalada%></li><br>
-                        BEBIDA <li><%=cantidadBebida%> <%=bebida%></li><br>
-                        POSTRE <li><%=cantidadPostre%> <%=postre%></li><br>
+                        <%
+                        if(cantidadOferta==0){
+                            
+                        }else{
+                          out.print("OFERTA <li>"+cantidadOferta+" ---> "+oferta+" </li><br>");  
+                        }
+                        
+                        if(cantidadMenu==0){
+                            
+                        }else{
+                           out.print("MENU <li>"+cantidadMenu+" ---> "+menu+" </li><br>");
+                        }
+                        
+                        if(cantidadPizza==0){
+                            
+                        }else{
+                            out.print("PIZZA <li>"+cantidadPizza+" ---> "+pizza+" </li><br>");
+                        }
+                        
+                        if(cantidadEntrante==0){
+                            
+                        }else{
+                           out.print("ENTRANTES <li>"+cantidadEntrante+" ---> "+entrante+" </li><br>");
+                        }
+                        
+                        if(cantidadHamburguesa==0){
+                            
+                        }else{
+                            out.print("HAMBURGUESAS <li>"+cantidadHamburguesa+" ---> "+hamburguesa+" </li><br>");
+                        }
+                        
+                        if(cantidadPasta==0){
+                            
+                        }else{
+                           out.print("PASTA <li>"+cantidadPasta+" ---> "+pasta+" </li><br>");
+                        }
+                        
+                        if(cantidadEnsalada==0){
+                            
+                        }else{
+                          out.print("ENSALADAS <li>"+cantidadEnsalada+" ---> "+ensalada+" </li><br>");
+                        }
+                        
+                        if(cantidadBebida==0){
+                            
+                        }else{
+                          out.print("BEBIDAS <li>"+cantidadBebida+" ---> "+bebida+" </li><br>");
+                        }
+                        
+                        if(cantidadPostre==0){
+                            
+                        }else{
+                           out.print("POSTRE <li>"+cantidadPostre+" ---> "+postre+" </li><br>");
+                        }
+                        %>
                     </td>
                     <td></td>
                     <td></td>
