@@ -1,5 +1,5 @@
 package dvdRental;
-// Generated 22-ene-2020 12:15:15 by Hibernate Tools 4.3.1
+// Generated 22-ene-2020 13:18:24 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;

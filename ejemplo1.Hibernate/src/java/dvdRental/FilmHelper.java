@@ -8,11 +8,8 @@ package dvdRental;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-/**
- *
- * @author José Antonio
- */
 public class FilmHelper {
+
     Session session=null;
     
         public FilmHelper(){
