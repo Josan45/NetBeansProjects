@@ -25,7 +25,7 @@ and open the template in the editor.
                     if (peticion_http.status == 200) {
 
                         var documento_xml = peticion_http.responseXML;
-                        var x = documento_xml.getElementsByTagName("provincias");
+                        var x = documento_xml.getElementsByTagName("nombre");
 
                         //alert(longitud);
                         for (var y = 0; y < x.length; y++) {
@@ -34,6 +34,36 @@ and open the template in the editor.
                             var txt = txt + "<option value=" + codpro + ">" + nombre + "</option>";
                         }
                         document.getElementById("origen").innerHTML = txt;
+                    }
+                }
+            }
+            
+            function cargarMunicipios(){
+                peticion_http = new XMLHttpRequest();
+
+                peticion_http.onreadystatechange = muestraMunicipios;
+
+                peticion_http.open('GET', './cargarMunicipios.jsp', true);
+                peticion_http.send(null);
+                
+                document.getElementById("origen").value;
+            }
+            
+            function muestraMunicipios(){
+                
+                if (peticion_http.readyState == 4) {
+                    if (peticion_http.status == 200) {
+
+                        var documento_xml = peticion_http.responseXML;
+                        var x = documento_xml.getElementsByTagName("cod");
+
+                        //alert(longitud);
+                        for (var y = 0; y < x.length; y++) {
+                            var cod = documento_xml.getElementsByTagName("cod")[y].firstChild.nodeValue;
+                            var nombre = documento_xml.getElementsByTagName("nombre")[y].firstChild.nodeValue;
+                            var txt = txt + "<option value=" + cod + ">" + nombre + "</option>";
+                        }
+                        document.getElementById("destino").innerHTML = txt;
                     }
                 }
             }
@@ -49,7 +79,13 @@ and open the template in the editor.
                 <select id="origen" onchange="cargarMunicipios()">
 
                 </select>
+            </p><br>
+            <p>Selecciona un destino
+                <select id="destino">
+
+                </select>
             </p>
             <br>
+            <input type="button" onclick="muestraBillete()">
     </body>
 </html>

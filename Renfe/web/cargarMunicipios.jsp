@@ -6,65 +6,41 @@
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-  <% 
-        
-            
-    String driver="com.mysql.jdbc.Driver";
-    String url="jdbc:mysql://localhost/andalucia";
-        
-    Connection conexion=null;
-    
-    String texto="";
-    
-    boolean correcto=false;
-    
-        try {
-            Class.forName(driver);
-            
-            conexion=DriverManager.getConnection(url,"root","");
-            Statement estatement=conexion.createStatement();
-            
-            String codigo=request.getParameter("codigo");
-            String cadena=request.getParameter("texto");
-            
-            String sentenciaSQL="SELECT nombre from municipios where nombre like '"+cadena+"%' and codprov="+codigo;
-            
-            ResultSet rs=estatement.executeQuery(sentenciaSQL);
-            
-            //texto="{'provincias':[";
-            texto="[";
-            rs.last(); 
-            int numRows = rs.getRow(); 
-            rs.beforeFirst();
-            
-            
-            int total=0;
-            if (cadena!=""){
-            
-            while (rs.next()){ 
-            
-            total++;
-            
-            if (total==numRows){
-                texto+=("'"+rs.getString("nombre")+"'"); 
-            } else {
-                texto+=("'"+rs.getString("nombre")+"',"); 
-            }
-            
-            }
-            }
+<%@page import="java.sql.DriverManager"%>
 
-            
+<%@page contentType="text/xml" pageEncoding="UTF-8"%>
 
-            texto+="]";
+        <%
+            String driver="com.mysql.jdbc.Driver";
+            String url="jdbc:mysql://localhost/andalucia";
             
+            String id=request.getParameter("id");
             
-        } catch (Exception e) {
-        }
-        
-            out.print(texto);
-        
-        %>
+            Connection con=null;
+            
+            try{
+                
+                Class.forName(driver);
+                con=DriverManager.getConnection(url,"root","");
+                String sql="SELECT * FROM municipios where codprov="+id;
+                Statement st=con.createStatement();
+                ResultSet rs=st.executeQuery(sql);
+                
+                out.print("<municipios>");
+                
+                while(rs.next()){
+                    String cod=rs.getString("cod");
+                    String nombre=rs.getString("nombre");
+                    out.print("<municipio>"
+                            + "<codigo>"+cod+"</codigo>"
+                            + "<nombre>"+nombre+"</nombre>"
+                            + "</municipio>");
+                }
+                out.print("</municipios>");
+                
+            }catch(ClassNotFoundException ex){
+                
+            }
+            
+            %>
