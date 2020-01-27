@@ -39,14 +39,16 @@ and open the template in the editor.
             }
             
             function cargarMunicipios(){
+                var id=document.getElementById("origen").value;
                 peticion_http = new XMLHttpRequest();
 
                 peticion_http.onreadystatechange = muestraMunicipios;
 
-                peticion_http.open('GET', './cargarMunicipios.jsp', true);
+                peticion_http.open('POST', './cargarMunicipios.jsp', true);
                 peticion_http.send(null);
                 
-                document.getElementById("origen").value;
+                var query_string = crea_query();
+                peticion_http.send(query_string);
             }
             
             function muestraMunicipios(){
