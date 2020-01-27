@@ -15,32 +15,22 @@
             String driver="com.mysql.jdbc.Driver";
             String url="jdbc:mysql://localhost/andalucia";
             
-            String id=request.getParameter("id");
+            String id=request.getParameter("idc");
             
             Connection con=null;
             
-            try{
-                
                 Class.forName(driver);
                 con=DriverManager.getConnection(url,"root","");
                 String sql="SELECT * FROM municipios where codprov='"+id+"'";
                 Statement st=con.createStatement();
                 ResultSet rs=st.executeQuery(sql);
                 
-                out.print("<municipios>");
-                
-                while(rs.next()){
-                    String cod=rs.getString("cod");
-                    String nombre=rs.getString("nombre");
-                    out.print("<municipio>"
-                            + "<codigo>"+cod+"</codigo>"
-                            + "<nombre>"+nombre+"</nombre>"
-                            + "</municipio>");
-                }
-                out.print("</municipios>");
-                
-            }catch(ClassNotFoundException ex){
-                
-            }
+                %><respuesta><%
+                    while(rs.next()){
+                        %><codigo><%out.print(rs.getString(1));%></codigo><%
+                        %><municipios><%out.print(rs.getString(3));%></municipios><%
+                    }
+                %></respuesta><%
+                    con.close();
             
             %>

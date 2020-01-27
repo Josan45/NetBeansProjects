@@ -9,85 +9,120 @@ and open the template in the editor.
         <title>Renfe</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript">
-            function cargarProvincias(){
-                peticion_http = new XMLHttpRequest();
-
-                peticion_http.onreadystatechange = muestraProvincias;
-
-                peticion_http.open('GET', './cargarProvincias.jsp', true);
-                peticion_http.send(null);
+        <script>
+            var READY_STATE_COMPLETE=4;
+            var peticion_http;
+            
+            function inicializa_xhr() {
+                if(window.XMLHttpRequest) {
+                    return new XMLHttpRequest();
+                }else if(window.ActiveXObject) {
+                    return new ActiveXObject("Microsoft.XMLHTTP");
+                }
             }
             
-            function muestraProvincias(){
-                
-                if (peticion_http.readyState == 4) {
-                    if (peticion_http.status == 200) {
-
+            function cargarCiudades(){
+                selectCiudades = document.getElementById("ciudades");
+                selectCiudades.innerHTML= selectCiudadesOpcion1;
+                selectMunicipios=document.getElementById("municipios");
+                selectMunicipios.innerHTML=selectMunicipiosOpcion1;
+                consultaCiudades();
+            }
+            
+            var selectCiudadesOpcion1="<option value=\"\">-Selecciona-</option>";
+            var selectMunicipiosOpcion1="<option value=\"\">-Selecciona-</option>";
+            
+            function consultaCiudades(){
+                peticion_http=inicializa_xhr();
+                if(peticion_http){
+                    peticion_http.onreadystatechange = procesaCiudades;
+                    peticion_http.open("GET","cargarProvincias.jsp",true);
+                    peticion_http.send(null);
+                }
+            }
+            
+            function procesaCiudades(){
+                if(peticion_http.readyState==READY_STATE_COMPLETE){
+                    if(peticion_http.status==200){
                         var documento_xml = peticion_http.responseXML;
-                        var x = documento_xml.getElementsByTagName("nombre");
-
-                        //alert(longitud);
-                        for (var y = 0; y < x.length; y++) {
-                            var codpro = documento_xml.getElementsByTagName("codpro")[y].firstChild.nodeValue;
-                            var nombre = documento_xml.getElementsByTagName("nombre")[y].firstChild.nodeValue;
-                            var txt = txt + "<option value=" + codpro + ">" + nombre + "</option>";
+                        var root = documento_xml.getElementsByTagName("respuesta")[0];
+                        var codigo=root.getElementsByTagName("codigo");
+                        var ciudades=root.getElementsByTagName("ciudades");
+                        for(var x=0;x<codigo.length;x++){
+                            var opcion= "<option value=\"" +codigo[x].firstChild.nodeValue+"\">"+ciudades[x].firstChild.nodeValue+"</option>";
+                            selectCiudades.innerHTML+=opcion;
                         }
-                        document.getElementById("origen").innerHTML = txt;
                     }
                 }
             }
             
-            function cargarMunicipios(){
-                var id=document.getElementById("origen").value;
-                peticion_http = new XMLHttpRequest();
-
-                peticion_http.onreadystatechange = muestraMunicipios;
-
-                peticion_http.open('POST', './cargarMunicipios.jsp', true);
-                peticion_http.send(null);
-                
-                var query_string = crea_query();
-                peticion_http.send(query_string);
+            function cargaMunicipios(){
+                peticion_http=inicializa_xhr();
+                if(peticion_http){
+                    peticion_http.onreadystatechange = procesaMunicipios;
+                    peticion_http.open("POST","cargarMunicipios.jsp",true);
+                    peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    var query_string = crea_query_string_municipios();
+                    peticion_http.send(query_string);
+                }
             }
             
-            function muestraMunicipios(){
-                
-                if (peticion_http.readyState == 4) {
-                    if (peticion_http.status == 200) {
-
+            function crea_query_string_municipios(){
+                var e=document.getElementById("ciudades");
+                idc = e.options[e.selectedIndex].value;
+                return "idc=" + encodeURIComponent(idc) +
+                    "&nocache=" + Math.random();
+            }
+            
+            function procesaMunicipios(){
+                if(peticion_http.readyState==READY_STATE_COMPLETE){
+                    if(peticion_http.status==200){
                         var documento_xml = peticion_http.responseXML;
-                        var x = documento_xml.getElementsByTagName("cod");
-
-                        //alert(longitud);
-                        for (var y = 0; y < x.length; y++) {
-                            var cod = documento_xml.getElementsByTagName("cod")[y].firstChild.nodeValue;
-                            var nombre = documento_xml.getElementsByTagName("nombre")[y].firstChild.nodeValue;
-                            var txt = txt + "<option value=" + cod + ">" + nombre + "</option>";
+                        var root = documento_xml.getElementsByTagName("respuesta")[0];
+                        var codigo=root.getElementsByTagName("codigo");
+                        var municipios=root.getElementsByTagName("municipios");
+                        for(var x=0;x<codigo.length;x++){
+                            var opcion= "<option value=\"" +codigo[x].firstChild.nodeValue+"\">"+municipios[x].firstChild.nodeValue+"</option>";
+                            selectMunicipios.innerHTML+=opcion;
                         }
-                        document.getElementById("destino").innerHTML = txt;
                     }
                 }
             }
-
         </script>
         <style type="text/css">
            
         </style>
     </head>
-    <body onload="cargarProvincias()">
-        <h3>Origen</h3>
-            <p>Selecciona un origen
-                <select id="origen" onchange="cargarMunicipios()">
-
-                </select>
-            </p><br>
-            <p>Selecciona un destino
-                <select id="destino">
-
-                </select>
-            </p>
-            <br>
-            <input type="button" onclick="muestraBillete()">
+    
+    <body onload="cargarCiudades()">
+        <table width="400" border="0" align="center" bgcolor="#ebf4fb" cellpadding="6">
+            <tr>
+                <td colspan="2" style="font-size: 15px"><b>RENFE</b></td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <span style="font-size:13px"><b>Ciudades</b></span><br>
+                    Selecciona una ciudad
+                </td>
+                <td>
+                    <select id="ciudades" name="ciudades" onchange="cargaMunicipios()"></select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right"><span style="font-size: 13px"><b>Municipios</b></span><br></td>
+                <td>
+                    <select id="municipios" name="municipios"></select> 
+                </td>
+            </tr>
+            <tr>
+                
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2" id="peliculas">
+                    
+                </td>
+            </tr>
+        </table>      
     </body>
 </html>

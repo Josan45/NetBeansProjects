@@ -15,10 +15,7 @@
             String driver="com.mysql.jdbc.Driver";
             String url="jdbc:mysql://localhost/andalucia";
             
-            Connection con=null;
-            
-            try{
-                
+                Connection con=null;
                 Class.forName(driver);
                 con=DriverManager.getConnection(url,"root","");
                 String sql="SELECT * FROM provincias";
@@ -28,20 +25,12 @@
                 String codigo="";
                 String nombre="";
                 
-                out.print("<provincias>");
-                
-                while(rs.next()){
-                    codigo=rs.getString("codpro");
-                    nombre=rs.getString("nombre");
-                    out.print("<provincia>"
-                            + "<codpro>"+codigo+"</codpro>"
-                            + "<nombre>"+nombre+"</nombre>"
-                            + "</provincia>");
-                }
-                out.print("</provincias>");
-                
-            }catch(ClassNotFoundException ex){
-                
-            }
+                %><respuesta><%
+                    while(rs.next()){
+                        %><codigo><%out.print(rs.getString(1));%></codigo><%
+                        %><ciudades><%out.print(rs.getString(2));%></ciudades><%
+                    }
+                %></respuesta><%
+            con.close();
             
             %>
