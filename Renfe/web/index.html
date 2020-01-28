@@ -6,13 +6,12 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Renfe</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
             var READY_STATE_COMPLETE=4;
             var peticion_http;
-            
             function inicializa_xhr() {
                 if(window.XMLHttpRequest) {
                     return new XMLHttpRequest();
@@ -20,7 +19,6 @@ and open the template in the editor.
                     return new ActiveXObject("Microsoft.XMLHTTP");
                 }
             }
-            
             function cargarCiudades(){
                 selectCiudades = document.getElementById("ciudades");
                 selectCiudades.innerHTML= selectCiudadesOpcion1;
@@ -28,10 +26,8 @@ and open the template in the editor.
                 selectMunicipios.innerHTML=selectMunicipiosOpcion1;
                 consultaCiudades();
             }
-            
             var selectCiudadesOpcion1="<option value=\"\">-Selecciona-</option>";
             var selectMunicipiosOpcion1="<option value=\"\">-Selecciona-</option>";
-            
             function consultaCiudades(){
                 peticion_http=inicializa_xhr();
                 if(peticion_http){
@@ -40,7 +36,6 @@ and open the template in the editor.
                     peticion_http.send(null);
                 }
             }
-            
             function procesaCiudades(){
                 if(peticion_http.readyState==READY_STATE_COMPLETE){
                     if(peticion_http.status==200){
@@ -55,7 +50,6 @@ and open the template in the editor.
                     }
                 }
             }
-            
             function cargaMunicipios(){
                 peticion_http=inicializa_xhr();
                 if(peticion_http){
@@ -66,14 +60,12 @@ and open the template in the editor.
                     peticion_http.send(query_string);
                 }
             }
-            
             function crea_query_string_municipios(){
                 var e=document.getElementById("ciudades");
                 idc = e.options[e.selectedIndex].value;
                 return "idc=" + encodeURIComponent(idc) +
                     "&nocache=" + Math.random();
             }
-            
             function procesaMunicipios(){
                 if(peticion_http.readyState==READY_STATE_COMPLETE){
                     if(peticion_http.status==200){
@@ -88,41 +80,100 @@ and open the template in the editor.
                     }
                 }
             }
-        </script>
-        <style type="text/css">
-           
-        </style>
-    </head>
-    
-    <body onload="cargarCiudades()">
-        <table width="400" border="0" align="center" bgcolor="#ebf4fb" cellpadding="6">
-            <tr>
-                <td colspan="2" style="font-size: 15px"><b>RENFE</b></td>
-            </tr>
-            <tr>
-                <td align="right">
-                    <span style="font-size:13px"><b>Ciudades</b></span><br>
-                    Selecciona una ciudad
-                </td>
-                <td>
-                    <select id="ciudades" name="ciudades" onchange="cargaMunicipios()"></select>
-                </td>
-            </tr>
-            <tr>
-                <td align="right"><span style="font-size: 13px"><b>Municipios</b></span><br></td>
-                <td>
-                    <select id="municipios" name="municipios"></select> 
-                </td>
-            </tr>
-            <tr>
+            
+            function iniciar(){
+                var enviar=document.getElementById("Comprar").addEventListener('click',validar,false); 
+            }
+            
+            function validar(evento){
+                if( compruebafecha()) {
+                    return true;
+                }else{
+                    alert("Fechas Incorrectas"); 
+                    return false; 
+                }
+            }
+            
+            function compruebaFecha(){
+                var fechas=document.getElementById("fechasalida").value;
+                var fechar=document.getElementById("fecharegreso").value;
                 
-                <td></td>
+                var fechas1=new Date(fechas);
+                var fechar1=new Date(fechar);
+                
+                if(fechas1=fechar1){
+                    alert("Las fechas no pueden ser iguales");
+                    
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body onload="cargarCiudades();iniciar()">
+        <form action="billete.jsp" method="POST">
+        <table width="400"  align="center"  cellpadding="6">
+            <tr>
+                <td colspan="3" style="font-size: 15px"><b>RENFE</b></td>
             </tr>
             <tr>
-                <td colspan="2" id="peliculas">
-                    
+                <td align="left" colspan="1">
+                    <span style="font-size:13px"><b>Ciudades</b></span><br>
+                </td>
+                <td colspan="2">
+                    <select id="ciudades" name="ciudades" onchange="cargaMunicipios()" required=""></select>
                 </td>
             </tr>
-        </table>      
+            <tr>
+                <td align="left" colspan="1"><span style="font-size: 13px"><b>Municipios</b></span><br></td>
+                <td colspan="2">
+                    <select id="municipios" name="municipios" required=""></select> 
+                </td>
+            </tr>
+        </table>
+        <table width="400"  align="center"  cellpadding="6">
+            <tr>
+                <td align="center" colspan="1"><span style="font-size: 13px"><b>Fecha del viaje</b></span><br></td>
+                <td align="center" colspan="1"><span style="font-size: 13px"><b>Horarios</b></span><br></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="1"><span style="font-size: 13px"><b>Salida:<input type="date" name="fechasalida" value="" id="fechasalida" required=""/></b></span><br></td>
+                <td align="center" colspan="1"><span style="font-size: 13px">
+                        <b>Mañana<input type="radio" name="horarios" value="Mañana" id="m1" checked=""/></b>
+                        <b>Tarde<input type="radio" name="horarios" value="Tarde" id="t1"/></b>
+                        <b>Noche<input type="radio" name="horarios" value="Noche" id="n1"/></b>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="1"><span style="font-size: 13px"><b>Regreso:<input type="date" name="fecharegreso" value="" id="fecharegreso" required=""/></b></span><br></td>
+                <td align="center" colspan="1"><span style="font-size: 13px">
+                        <b>Mañana<input type="radio" name="horarior" value="Mañana" id="m2" checked=""/></b>
+                        <b>Tarde<input type="radio" name="horarior" value="Tarde" id="t2"/></b>
+                        <b>Noche<input type="radio" name="horarior" value="Noche" id="n2"/></b>
+                </td>
+            </tr>
+                </table>
+                <table width="400"  align="center"  cellpadding="6">		
+            <tr>
+                <td align="center" colspan="1">
+                    <span style="font-size: 13px"><b>Adultos</b></span><br>
+                    <input type="number" name="adultos" value="1" max="10" min="0"/>
+                </td>
+                <td align="center" colspan="1">
+                    <span style="font-size: 13px"><b>Niños 4-13</b></span><br>
+                    <input type="number" name="entre4-13" value="0" max="10" min="0"/>
+                </td>
+                <td align="center" colspan="1">
+                    <span style="font-size: 13px"><b>Niños <4</b></span><br>
+                    <input type="number" name="menor4" value="0" max="10" min="0"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <span style="font-size: 13px"><input type="submit" value="Comprar" name="Comprar" id="Comprar"/></span><br>
+                </td>
+            </tr>
+        </table>    
+    </form>
+        <div id="errores"></div>
     </body>
 </html>

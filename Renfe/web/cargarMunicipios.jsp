@@ -21,16 +21,16 @@
             
                 Class.forName(driver);
                 con=DriverManager.getConnection(url,"root","");
-                String sql="SELECT * FROM municipios where codprov='"+id+"'";
+                String sql="SELECT * FROM municipios where codprov="+id;
                 Statement st=con.createStatement();
                 ResultSet rs=st.executeQuery(sql);
                 
-                %><respuesta><%
+                 %><respuesta><%
                     while(rs.next()){
                         %><codigo><%out.print(rs.getString(1));%></codigo><%
                         %><municipios><%out.print(rs.getString(3));%></municipios><%
                     }
-                %></respuesta><%
-                    con.close();
+                    %></respuesta><%
+            con.close();
             
             %>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Ejercicio 8</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function cargaCategoria() {
+                peticion_http = new XMLHttpRequest();
+
+                peticion_http.onreadystatechange = muestraContenido;
+
+                peticion_http.open('GET', './cargarCategoria.jsp', true);
+                peticion_http.send(null);
+            }
+
+            function muestraContenido() {
+
+                if (peticion_http.readyState == 4) {
+                    if (peticion_http.status == 200) {
+
+                        var documento_xml = peticion_http.responseXML;
+                        var x = documento_xml.getElementsByTagName("categoria");
+
+                        //alert(longitud);
+                        for (var y = 0; y < x.length; y++) {
+                            var codigo = documento_xml.getElementsByTagName("codigo")[y].firstChild.nodeValue;
+                            var nombre = documento_xml.getElementsByTagName("nombre")[y].firstChild.nodeValue;
+                            var txt = txt + "<option value=" + codigo + ">" + nombre + "</option>";
+                        }
+                        document.getElementById("catego").innerHTML = txt;
+                    }
+
+                }
+            }
+                
+                function cargaVideoclub(){
+                    peticion_http = new XMLHttpRequest();
+
+                    peticion_http.onreadystatechange = muestraVideoClub;
+
+                    peticion_http.open('GET', './cargarVideoclub.jsp', true);
+                    peticion_http.send(null);
+                }
+                
+                function muestraVideoClub(){
+
+                if (peticion_http.readyState == 4) {
+                    if (peticion_http.status == 200) {
+
+                        var documento_xml = peticion_http.responseXML;
+                        var x = documento_xml.getElementsByTagName("videoclub");
+
+                        //alert(longitud);
+                        for (var y = 0; y < x.length; y++) {
+                            var codigo = documento_xml.getElementsByTagName("codigo")[y].firstChild.nodeValue;
+                            var nombre = documento_xml.getElementsByTagName("nombre")[y].firstChild.nodeValue;
+                            var txt = txt + "<option value=" + codigo + ">" + nombre + "</option>";
+                        }
+                        document.getElementById("video").innerHTML = txt;
+                    }
+
+                }
+            }
+            
+            function crea_query_string() {
+                var categoria = document.getElementById("catego");
+                var tienda = document.getElementById("video");
+
+                return "catego=" + encodeURIComponent(categoria.value) +
+                "&video=" + encodeURIComponent(tienda.value);
+            }
+            
+                function cargaPeliculas(){
+                    peticion_http = new XMLHttpRequest();
+                 
+                    peticion_http.onreadystatechange = muestraPelis;
+
+                    peticion_http.open('POST', './cargarPeliculas.jsp', true);
+                    peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    
+                    var query_string = crea_query_string();
+                    peticion_http.send(query_string);
+                }
+                
+                function muestraPelis() {
+                        if (peticion_http.readyState == 4) {
+                            if (peticion_http.status == 200) {
+
+                                var documento_xml = peticion_http.responseXML;
+                                var x = documento_xml.getElementsByTagName("pelicula");
+
+                                //alert(longitud);
+                                for (var y = 0; y < x.length; y++) {
+                                    var titulo = documento_xml.getElementsByTagName("nombre")[y].firstChild.nodeValue;
+                                    var txt = txt + titulo+"<br><hr><br>";
+                                }
+                                document.getElementById("resulta").innerHTML = txt;
+                            }
+                        }
+                    }
+        </script>
+    </head>
+    <body onload="cargaCategoria()">
+    <center>
+        <h2>TODO-CINE PTO.COM</h2>
+        <p>Encuentra tus pelis preferidas en tu videoclub mas cercano</p>
+        
+        <p>Categoria
+            <select id="catego" onchange="cargaVideoclub()">
+                
+            </select>
+        </p>
+        <p>Videoclub
+                <select id="video">
+                    
+            </select>
+        </p>
+        <button onclick="cargaPeliculas()">Buscar</button>
+        
+        <div>
+        <p>Peliculas disponibles:</p>
+            
+            <div id="resulta"></div>
+            
+        </div>
+    </center>
+    </body>
+</html>
