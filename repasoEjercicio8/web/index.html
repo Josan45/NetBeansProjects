@@ -66,6 +66,46 @@ and open the template in the editor.
 
                 }
             }
+            
+            function crea_query_string() {
+                var categoria = document.getElementById("catego");
+                var tienda = document.getElementById("video");
+
+                return "catego=" + encodeURIComponent(categoria.value) +
+                "&video=" + encodeURIComponent(tienda.value);
+            }
+            
+                function muestraPelis(){
+                    peticion_http = new XMLHttpRequest();
+                 
+                    peticion_http.onreadystatechange = muestraPelis2;
+
+                    peticion_http.open('POST', './cargarPelis.jsp', true);
+                    peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    var query_string = crea_query_string();
+                    peticion_http.send(query_string);
+                }
+                
+                    function muestraPelis2() {
+
+
+                        if (peticion_http.readyState == 4) {
+                            if (peticion_http.status == 200) {
+
+                                var documento_xml = peticion_http.responseXML;
+                                var x = documento_xml.getElementsByTagName("pelicula");
+
+                                //alert(longitud);
+                                for (var y = 0; y < x.length; y++) {
+                                    var titulo = documento_xml.getElementsByTagName("titulo")[y].firstChild.nodeValue;
+                                    var txt = txt + titulo+"<br><hr><br>";
+                                }
+                                document.getElementById("resulta").innerHTML = txt;
+                            }
+
+                        }
+
+                    }
         </script>
     </head>
     <body onload="muestraCategoria()">
@@ -79,5 +119,12 @@ and open the template in the editor.
                 
             </select>
         </p>
+        
+            <button onclick="muestraPelis()">Aceptar</button>
+            
+            <p>Peliculas disponibles:</p>
+            
+            <div id="resulta"></div>
+            
     </body>
 </html>
