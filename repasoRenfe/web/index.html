@@ -93,9 +93,6 @@ and open the template in the editor.
                 }else if (menoresCuatro>0 & adultos<1 ){
                     alert("Un bebé debe ir acompañado de un adulto.");
                     return false;
-                } else if (horasalida==horaregreso){
-                    alert("La hora de salida y de regreso deben ser distintas.");
-                    return false;
                 } else if (horasalida>horaregreso){
                     alert("La hora de salida debe ser anterior a la hora de regreso");
                     return false;
@@ -133,7 +130,7 @@ and open the template in the editor.
         </style>
     </head>
     <body bgcolor="#e1e2d8" onload="cargarProvincias()">
-        <form name="formulario" action="reserva.jsp" method="POST" autocomplete="off" onkeypress="return anularIntro(event)" onsubmit="return validacion()">
+        <form name="formulario" action="billete.jsp" method="POST" autocomplete="off" onkeypress="return anularIntro(event)" onsubmit="return validacion()">
             <table border="0" align="center" style="border-width: 0px; border-spacing: 5px;">
                 <tr>
                     <td align="center" bgcolor="white" style="border-radius: 7px;"><img src="images/Titulo.png" /></td>
