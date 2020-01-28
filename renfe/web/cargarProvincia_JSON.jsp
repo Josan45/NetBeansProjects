@@ -1,19 +1,19 @@
 <%-- 
-    Document   : cargarMunicipios_JSON
-    Created on : 25-ene-2020, 17:33:52
+    Document   : cargarProvincia_JSON
+    Created on : 28-ene-2020, 19:04:36
     Author     : Jose Antonio
 --%>
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
 
-<%
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+        <%
             String driver="com.mysql.jdbc.Driver";
             String url="jdbc:mysql://localhost/andalucia";
-            
-            String id=request.getParameter("id");
             
             Connection con=null;
             
@@ -21,7 +21,7 @@
                 
                 Class.forName(driver);
                 con=DriverManager.getConnection(url,"root","");
-                String sql="SELECT * FROM municipios where codprov='"+id+"'";
+                String sql="SELECT * FROM provincias";
                 Statement st=con.createStatement();
                 ResultSet rs=st.executeQuery(sql);
                 
@@ -33,7 +33,7 @@
                 out.print("[");
                 
                 while(rs.next()){
-                    codigo=rs.getString("codprov");
+                    codigo=rs.getString("codpro");
                     nombre=rs.getString("nombre");
                     
                     if(cont==0){
@@ -51,4 +51,5 @@
             }catch(ClassNotFoundException e){
                 
             }
-%>
+            %>
+

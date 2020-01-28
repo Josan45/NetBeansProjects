@@ -1,6 +1,6 @@
 <%-- 
-    Document   : cargarProvincias_JSON
-    Created on : 25-ene-2020, 17:31:34
+    Document   : cargarMunicipio_JSON
+    Created on : 28-ene-2020, 19:12:56
     Author     : Jose Antonio
 --%>
 
@@ -13,13 +13,15 @@
             String driver="com.mysql.jdbc.Driver";
             String url="jdbc:mysql://localhost/andalucia";
             
+            String id=request.getParameter("origen");
+            
             Connection con=null;
             
             try{
                 
                 Class.forName(driver);
                 con=DriverManager.getConnection(url,"root","");
-                String sql="SELECT * FROM provincias";
+                String sql="SELECT * FROM municipios where codprov='"+id+"'";
                 Statement st=con.createStatement();
                 ResultSet rs=st.executeQuery(sql);
                 
@@ -31,7 +33,7 @@
                 out.print("[");
                 
                 while(rs.next()){
-                    codigo=rs.getString("codpro");
+                    codigo=rs.getString("codprov");
                     nombre=rs.getString("nombre");
                     
                     if(cont==0){

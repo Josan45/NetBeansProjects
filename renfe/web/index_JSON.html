@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function cargarProvincias(){
+                peticion_http=new XMLHttpRequest();
+                peticion_http.onreadystatechange=muestraProvincias;
+                peticion_http.open('GET','./cargarProvincia_JSON.jsp',true);
+                peticion_http.send(null);
+            }
+            
+            function muestraProvincias(){
+                if (peticion_http.readyState == 4) {
+                    if (peticion_http.status == 200) {
+
+                        var respuesta_json = peticion_http.responseText;
+                        var objeto_json = eval("(" + respuesta_json + ")");
+
+                        for (var x = 0; x < objeto_json.length; x++) {
+                            var codigo = objeto_json[x].codigo;
+                            var nombre = objeto_json[x].nombre;
+                            var opcion = "<option value='" + codigo + "'>" + nombre + "</option>";
+                            var txt = txt + opcion;
+                        }
+
+                        document.getElementById("origen").innerHTML = txt;
+                    }
+                }
+            }
+            
+            function crear_query_municipios(){
+                var e=document.getElementById("origen");
+                return "origen=" + encodeURIComponent(e.value) +
+                    "&nocache=" + Math.random();
+            }
+            
+            function cargarMunicipios(){
+                peticion_http=new XMLHttpRequest();
+                peticion_http.onreadystatechange=muestraMunicipio;
+                peticion_http.open('POST','./cargarMunicipio_JSON.jsp',true);
+                peticion_http.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                var crea_query=crear_query_municipios();
+                peticion_http.send(crea_query);
+            }
+            
+            function muestraMunicipio(){
+               if (peticion_http.readyState == 4) {
+                    if (peticion_http.status == 200) {
+
+                        var respuesta_json = peticion_http.responseText;
+                        var objeto_json = eval("(" + respuesta_json + ")");
+
+                        for (var x = 0; x < objeto_json.length; x++) {
+                            var codigo = objeto_json[x].codigo;
+                            var nombre = objeto_json[x].nombre;
+                            var opcion = "<option value='" + codigo + "'>" + nombre + "</option>";
+                            var txt = txt + opcion;
+                        }
+
+                        document.getElementById("destino").innerHTML = txt;
+                    }
+                }
+            }
+        </script>
+   
+        <style type="text/css">
+            
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #sugerenciasDestino {
+                width: 200px; 
+                border: 1px solid black; 
+                background-color: #FFFFFF; 
+                display:none;
+                position: fixed;
+            }
+            #sugerenciasDestino ul {
+                list-style: none; 
+                margin: 0; 
+                padding: 0; 
+                font-size: .85em;}
+            #sugerenciasDestino ul li {
+                padding: .2em; 
+                border-bottom: 1px solid silver;
+            }
+            .seleccionado {
+                font-weight: bold; 
+                background-color: #8a0072; 
+                color: #FFFFFF
+            }
+        </style>
+    </head>
+    <body bgcolor="#e1e2d8" onload="cargarProvincias()">
+        <form name="formulario" action="billete.jsp" method="POST" autocomplete="off">
+            <table border="0" align="center" style="border-width: 0px; border-spacing: 5px;">
+                <tr>
+                    <td align="center" bgcolor="white" style="border-radius: 7px;"><img src="images/Titulo.png" /></td>
+                </tr>
+                <tr>
+                    <td align="center" bgcolor="white" style="border-radius: 7px; padding: 5px 15px;">
+                        <table width="100%" border="0" align="center">
+                            <tr>
+                                <td><b>ORIGEN</b></td>
+                                <td align="center">
+                                    <select id="origen" style="width:100%" onchange="cargarMunicipios()">
+                                        
+                                    </select>
+                                    <input type="hidden" value="" id="origenParametro" name="origenParametro">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>DESTINO</b></td>
+                                <td align="center">
+                                    <select id="destino" style="width:100%">
+                                        
+                                    </select>
+                                    <input type="hidden" value="" id="destinoParametro" name="destinoParametro">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="white" style="border-radius: 7px; padding: 5px 15px;">
+                        <table width="100%" border="1" align="center" style="border-width: 0px;">
+                            <tr>
+                                <td colspan="2" style="border-width: 0px 2px 0px 0px; border-style: dotted;"><b>FECHA DEL VIAJE</b></td>
+                                <td colspan="3" style="border-width: 0px;"><b>HORARIOS</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 2px 0px 0px 0px; border-style: dotted;"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" align="right" style="border-width: 0px;"><b>SALIDA</b></td>
+                                <td rowspan="2" align="center" style="border-width: 0px;">
+                                    <input type="date" id="salida" name="salida" />
+                                </td>
+                                <td align="center" style="border-width: 0px;">
+                                    <input type="radio" name="hSalida" id="1" value="1"  checked />
+                                </td>
+                                <td align="center" style="border-width: 0px;">
+                                    <input type="radio" name="hSalida" id="2" value="2" />
+                                </td>
+                                <td align="center" style="border-width: 0px;">
+                                    <input type="radio" name="hSalida" id="3" value="3" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="border-width: 0px;"><b>MAÑANA</b></td>
+                                <td align="center" style="border-width: 0px;"><b>TARDE</b></td>
+                                <td align="center" style="border-width: 0px;"><b>NOCHE</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 2px 0px 0px 0px; border-style: dotted;"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" align="right" style="border-width: 0px;"><b>REGRESO</b></td>
+                                <td rowspan="2" align="center" style="border-width: 0px;">
+                                    <input type="date" id="regreso" name="regreso" />
+                                </td>
+                                <td align="center" style="border-width: 0px;">
+                                    <input type="radio" name="hRegreso" id="1" value="1" checked />
+                                </td>
+                                <td align="center" style="border-width: 0px;">
+                                    <input type="radio" name="hRegreso" id="2" value="2" />
+                                </td>
+                                <td align="center" style="border-width: 0px;">
+                                    <input type="radio" name="hRegreso" id="3" value="3" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="border-width: 0px;"><b>MAÑANA</b></td>
+                                <td align="center" style="border-width: 0px;"><b>TARDE</b></td>
+                                <td align="center" style="border-width: 0px;"><b>NOCHE</b></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="white" style="border-radius: 7px; padding: 5px 15px;">
+                        <table width="100%" border="1" align="center" style="border-width: 0px; border-collapse: collapse;">
+                            <tr>
+                                <td colspan="2" align="center" style="border-width: 0px 2px 0px 0px; border-style: dotted;"><b>ADULTOS</b></td>
+                                <td colspan="2" align="center" style="border-width: 0px 2px 0px 0px; border-style: dotted;"><b>NIÑOS 4-13</b></td>
+                                <td colspan="2" align="center" style="border-width: 0px;"><b>NIÑOS &lt;4</b></td>
+                            </tr>
+                            <tr>
+                                <td align="right" style="border-width: 0px;"><img src="images/Adultos.png" /></td>
+                                <td align="center" style="border-width: 0px 2px 0px 0px; border-style: dotted;">
+                                    <input type="number" min="1" max="10" value="1" id="adultos" name="adultos" />
+                                </td>
+                                <td align="right" style="border-width: 0px"><img src="images/Ninios13.png" /></td>
+                                <td align="center" style="border-width: 0px 2px 0px 0px; border-style: dotted;">
+                                    <input type="number" min="1" max="10" value="1" id="ninos13" name="ninos13" />
+                                </td>
+                                <td align="right" style="border-width: 0px"><img src="images/Ninios4.png" /></td>
+                                <td align="center" style="border-width: 0px;">
+                                    <input type="number" min="0" max="10" value="0" id="ninos4" name="ninos4" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="border-radius: 7px;">
+                        <input type="submit" value="" style="width:100%; height:50px; border-radius: 7px; background:url('images/Boton.png') left center no-repeat;" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
