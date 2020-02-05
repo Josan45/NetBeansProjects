@@ -8,6 +8,18 @@
         <servlet-name>compruebaDinero</servlet-name>
         <servlet-class>compruebaDinero</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>compruebaDineroTotal</servlet-name>
+        <servlet-class>compruebaDineroTotal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaPelisTotal</servlet-name>
+        <servlet-class>compruebaPelisTotal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compruebaActores</servlet-name>
+        <servlet-class>compruebaActores</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>compruebaDatos</servlet-name>
         <url-pattern>/compruebaDatos</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>compruebaDinero</servlet-name>
         <url-pattern>/compruebaDinero</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaDineroTotal</servlet-name>
+        <url-pattern>/compruebaDineroTotal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaPelisTotal</servlet-name>
+        <url-pattern>/compruebaPelisTotal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compruebaActores</servlet-name>
+        <url-pattern>/compruebaActores</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -35,7 +35,7 @@
 
             List<Customer> cliente = film.consultaCliente();
 
-            //List<Film>pelis=film.consultaPelis();
+            List<Film>pelis=film.consultaPelis();
         %>
     <center>
 
@@ -169,7 +169,9 @@
                             Pelicula:
                             <select name="pelis">
                                 <option value="0">-----------</option>
-                                
+                                <% for (int x = 0; x < pelis.size(); x++) {%>
+                                    <option value="<%=pelis.get(x).getFilmId() %>"><%=pelis.get(x).getTitle() %></option>
+                                <% }%>
                             </select>
                         </td>
                         <td><button type="submit">Mostrar</button></td>

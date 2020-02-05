@@ -60,4 +60,65 @@ public class FilmHelp {
         
         return lista;
     }
+    
+    public List<Customer>consultaCliente4(int id,int tramo){
+        List<Customer>lista;
+        
+        Query q=session.createQuery("from Customer as c where c.store.storeId="+id).setFirstResult(tramo).setMaxResults(10);
+        lista=(List<Customer>)q.list();
+        
+        return lista;
+    }
+    
+    public long consultaPago(String cliente,int tienda){
+        
+        Query q=session.createQuery("select sum(p.amount) from Payment as p where p.customer.customerId="+cliente+" and p.staff="+tienda+"");
+        long lista=(long)q.list().get(0);
+        
+        return lista;
+    }
+    
+    public List<Inventory>consultaInventario(int id,int tramo){
+        List<Inventory>lista;
+        
+        Query q=session.createQuery("select distinct f.title from Inventory as i,Film as f,Store as s where i.film=f.filmId and i.store=s.storeId and i.store="+id+"").setFirstResult(tramo).setMaxResults(10);
+        lista=(List<Inventory>)q.list();
+        
+        return lista;
+    }
+    
+    public short consultaPelisId(String title){
+
+        Query q=session.createQuery("select f.filmId from Film as f where f.title='"+title+"'");
+        short lista=(short)q.list().get(0);
+        
+        return lista;
+    }
+    
+    public List<Inventory>consultaVeces(int tienda, String peli){
+        List<Inventory>lista;
+        
+        Query q=session.createQuery("select count(r.inventory.film) from Rental r,Inventory i where r.inventory=i.inventoryId and i.store=r.staff and r.staff="+tienda+" and i.film.title='"+peli+"'");
+        lista=(List<Inventory>)q.list();
+        
+        return lista;
+    }
+    
+    public List<Film>consultaPelis(){
+        List<Film>lista;
+        
+        Query q=session.createQuery("from Film as f");
+        lista=(List<Film>)q.list();
+        
+        return lista;
+    }
+    
+    public List<Film>consultaPelisActores(int id){
+        List<Film>lista;
+        
+        Query q=session.createQuery("from Film as f where f.filmId="+id+"");
+        lista=(List<Film>)q.list();
+        
+        return lista;
+    }
 }
